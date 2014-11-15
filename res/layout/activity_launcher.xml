@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/launch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onLaunchButtonClick"
+        android:text="Start New Session" />
+
+    <Button
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onViewButtonClick"
+        android:text="View Data" />
+    
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onEditButtonClick"
+        android:text="Edit Past Data" />
+    
+    <Button
+        android:id="@+id/editDefaults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onEditDefaultButtonClick"
+        android:text="Edit Defaults" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onExitButtonClick"
+        android:text="Exit" />
+
+</LinearLayout>
