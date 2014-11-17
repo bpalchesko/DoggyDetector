@@ -37,7 +37,7 @@ public class LauncherActivity extends Activity {
 	public void onLaunchButtonClick (View v) {
 		//setContentView(new WheelView(this));
 		Trial.getNewTrial();
-		Intent i = new Intent(this, TrialActivityNew.class);
+		Intent i = new Intent(this, TrialRunActivity.class);
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant); 

@@ -47,7 +47,7 @@
         android:textSize="50sp"
         android:textStyle="normal"
         android:typeface="normal" />
-
+<!-- 
     <Button
         android:id="@+id/ViewHistoryButton"
         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
         android:textColorHint="#000000"
         android:textSize="50sp"
         android:textStyle="normal"
-        android:typeface="normal" />
+        android:typeface="normal" /> -->
 
     <Button
         android:id="@+id/SettingsButton"
