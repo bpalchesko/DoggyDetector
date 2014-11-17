@@ -171,6 +171,8 @@ public class TrialRunActivity extends Activity {
         	  counter=1;
         	  etNumber.setText(""+counter);
         	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
+        	  results.clear();
+        	  edText.setText("");
         	  
         	  
           }
