@@ -3,7 +3,6 @@ package edu.upenn.cis350.cancerDog;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,13 +10,11 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import android.content.SharedPreferences;
-import android.content.Context;
-
 
 import com.google.gson.GsonBuilder;
 
 //import edu.upenn.cis350.cancerDog.Trial.PostJson;
+
 
 //import edu.upenn.cis350.cancerDog.Trial.GetSessions;
 import android.app.Activity;
@@ -34,7 +31,9 @@ import android.view.View.OnTouchListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.*;
 
 public class TrialRunActivity extends Activity {
@@ -47,6 +46,7 @@ public class TrialRunActivity extends Activity {
 	ImageButton btnSave;
 	Button btnNext;
 	EditText edText;
+	TextView etNumber;
 	BloodWheel bw;
 	private static final String FORM_URL = "https://docs.google.com/forms/d/1R8Oq1YvTVfrgxafxcGZaO6C_wca3Lv_JV3Su_MIEnaU/formResponse";
 	private static final String DOG_NAME = "entry_434753845=";
@@ -71,12 +71,12 @@ public class TrialRunActivity extends Activity {
 		"entry_1055685979=", "entry_560711180=", "entry_2037751422=", "entry_1516979135=",
 		"entry_1970120858=", "entry_670425955=", "entry_2145047438=",
 		"entry_802163021=", "entry_1561108562=", "entry_1290361149="};
-	private static String dog = ""; 
 	
 	static ArrayList<String> results = new ArrayList<String>();
 	String btn1Text=""; //### Primitive obsession, refactor this
 	String btn2Text="";
 	String btn3Text="";
+	int counter=1;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +93,7 @@ public class TrialRunActivity extends Activity {
         btnSave = (ImageButton) findViewById(R.id.ibSave);
         btnNext = (Button) findViewById(R.id.ibNext);
         edText = (EditText) findViewById(R.id.editText1);
-        
-        SharedPreferences preferences = this.getSharedPreferences(
-    			"edu.upenn.cis350.cancerDog." + "dogs", Context.MODE_PRIVATE);
-    	ArrayList<String> dogs = new ArrayList<String>();
-    	String[] dogArray = this.getResources().getStringArray(R.array.dogs);
-		dog = dogArray[0];
-        
+        etNumber = (TextView) findViewById(R.id.NumberText);
         Intent data = (Intent) getIntent();
         if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
 		      bw = new BloodWheel();
@@ -174,6 +168,8 @@ public class TrialRunActivity extends Activity {
         			   Toast.LENGTH_LONG).show();
         	  HashMap<String, Object> trial = new HashMap<String, Object>();
         	  PostJson task = new PostJson();
+        	  counter=1;
+        	  etNumber.setText(""+counter);
         	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
         	  
         	  
@@ -186,7 +182,8 @@ public class TrialRunActivity extends Activity {
           {
         	 results.add(edText.getText().toString());
         	 edText.setText("");
-        	  
+        	 counter++;
+        	 etNumber.setText(""+counter);
           }
         });
         
@@ -394,10 +391,9 @@ public void postData() {
 	String trialResults = "";
 	for (int i = 0; i < results.size(); i++){
 		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
-	}	
+	}
 	
-	
-	String data = DOG_NAME + URLEncoder.encode(dog) + "&" + 
+	String data = DOG_NAME + URLEncoder.encode("woof") + "&" + 
 				TESTER + URLEncoder.encode("Lorenzo") + trialResults;
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);

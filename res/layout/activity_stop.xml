@@ -7,114 +7,149 @@ android:layout_gravity="center_horizontal"
 android:background="#FFFFFF">
 
 	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="vertical" 
-		android:layout_gravity="center_vertical">
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_vertical"
+	    android:orientation="vertical" >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content" 
-			android:orientation="horizontal">
-		   
-		    <ImageButton
-				android:id="@+id/ibStop1"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick1"
-				android:src="@drawable/btn_r1" />
+	    <LinearLayout
+	        android:layout_width="600dp"
+	        android:layout_height="match_parent"
+	        android:layout_marginTop="50dp"
+	        android:layout_weight="0.05"
+	        android:orientation="horizontal" >
 
-			<ImageButton
-				android:id="@+id/ibStop2"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick2"
-				android:src="@drawable/btn_r2" />
-			<ImageButton
-				android:id="@+id/ibStop3"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick3"
-				android:src="@drawable/btn_r3" />
+	        <ImageButton
+	            android:id="@+id/ibStop1"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="50dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick1"
+	            android:src="@drawable/btn_r1" />
 
-		</LinearLayout>
+	        <ImageButton
+	            android:id="@+id/ibStop2"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick2"
+	            android:src="@drawable/btn_r2" />
 
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:orientation="horizontal">
- 				   
-			<ImageButton
-				android:id="@+id/ibStop4"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick4"
-				android:src="@drawable/btn_r4" />
-			
-			<ImageButton
-				android:id="@+id/ibStop5"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick5"
-				android:src="@drawable/btn_r5" />
-				
-			<ImageButton
-				android:id="@+id/ibStop6"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick6"
-				android:src="@drawable/btn_r6" />
-		</LinearLayout>
+	        <ImageButton
+	            android:id="@+id/ibStop3"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick3"
+	            android:src="@drawable/btn_r3" />
 
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent" 
-			android:orientation="horizontal">
-			
-			<ImageButton android:id="@+id/ibStop7"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick7"
-				android:src="@drawable/btn_r7" />
-			
-			<ImageButton android:id="@+id/ibStop8"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick8"
-				android:src="@drawable/btn_r8" />
-			
-			<ImageButton android:id="@+id/ibStop9"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick9"
-				android:src="@drawable/btn_r9" />
-		</LinearLayout>
-		
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent" 
-			android:orientation="horizontal">
-			
-			<ImageButton
-				android:id="@+id/ibStop10"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick10"
-				android:src="@drawable/btn_r10" />
-			
-			<ImageButton
-				android:id="@+id/ibStop11"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick11"
-				android:src="@drawable/btn_r11" />
-			
-			<ImageButton
-				android:id="@+id/ibStop12"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:onClick="onStopClick12"
-				android:src="@drawable/btn_r12" />
-		</LinearLayout>
+	    </LinearLayout>
+
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="50dp"
+	        android:layout_marginTop="40dp"
+	        android:orientation="horizontal" >
+
+	        <ImageButton
+	            android:id="@+id/ibStop4"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:onClick="onStopClick4"
+	            android:src="@drawable/btn_r4" />
+
+	        <ImageButton
+	            android:id="@+id/ibStop5"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick5"
+	            android:src="@drawable/btn_r5" />
+
+	        <ImageButton
+	            android:id="@+id/ibStop6"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick6"
+	            android:src="@drawable/btn_r6" />
+
+	    </LinearLayout>
+
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="40dp"
+	        android:orientation="horizontal" >
+
+	        <ImageButton
+	            android:id="@+id/ibStop7"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="50dp"
+	            android:onClick="onStopClick7"
+	            android:src="@drawable/btn_r7" />
+
+	        <ImageButton
+	            android:id="@+id/ibStop8"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick8"
+	            android:src="@drawable/btn_r8" />
+
+	        <ImageButton
+	            android:id="@+id/ibStop9"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick9"
+	            android:src="@drawable/btn_r9" />
+
+	    </LinearLayout>
+
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_marginLeft="50dp"
+	        android:layout_marginTop="40dp"
+	        android:layout_weight="0.01"
+	        android:orientation="horizontal" >
+
+	        <ImageButton
+	            android:id="@+id/ibStop10"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:onClick="onStopClick10"
+	            android:src="@drawable/btn_r10" />
+
+	        <ImageButton
+	            android:id="@+id/ibStop11"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick11"
+	            android:src="@drawable/btn_r11" />
+
+	        <ImageButton
+	            android:id="@+id/ibStop12"
+	            android:layout_width="150dp"
+	            android:layout_height="150dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginStart="15dp"
+	            android:onClick="onStopClick12"
+	            android:src="@drawable/btn_r12" />
+
+	    </LinearLayout>
 	</LinearLayout>
+
 </LinearLayout>
