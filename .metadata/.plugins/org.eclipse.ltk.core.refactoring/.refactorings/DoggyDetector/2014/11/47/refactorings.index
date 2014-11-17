@@ -1,0 +1,6 @@
+1416257431567	Extracts string 'NEXT' into R.string.next
+1416257718079	Extracts string 'TODO' into R.string.todo
+1416258324333	Extracts string 'Trial : ' into R.string.trial_
+1416258505146	Rename field 'textView1'
+1416258511725	Rename field 'textView2'
+1416258803122	Extracts string '1' into R.string._1

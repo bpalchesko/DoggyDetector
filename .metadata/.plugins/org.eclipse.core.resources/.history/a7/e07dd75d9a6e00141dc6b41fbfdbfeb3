@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    tools:context="com.example.testbuttons.MainActivity"
+    android:orientation="vertical" 
+    android:gravity="center_horizontal" >
+
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_marginTop="21dp" >
+        
+		<ImageButton
+		    android:id="@+id/ibTrial1pass"
+		    android:layout_width="100dp"
+		    android:layout_height="100dp"
+		    android:layout_marginTop="0dp"
+		    android:gravity="center_vertical"
+		    android:src="@drawable/btn_g1" />
+
+	</LinearLayout>
+	    
+	<LinearLayout
+		android:id="@+id/linearLayout2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="21dp" >
+
+		<ImageButton
+		    android:id="@+id/ibTrial2pass"
+		    android:layout_width="100dp"
+		    android:layout_height="100dp"
+		    android:layout_marginTop="0dp"
+		    android:gravity="center_vertical"
+		    android:src="@drawable/btn_g5" />
+
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:id="@+id/linearLayout3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="21dp" >
+
+			<ImageButton
+			    android:id="@+id/ibTrial3pass"
+			    android:layout_width="100dp"
+			    android:layout_height="100dp"
+			    android:layout_marginTop="0dp"
+			    android:gravity="center_vertical"
+			    android:src="@drawable/btn_g9" />
+
+	    </LinearLayout>
+
+	    <ImageButton
+	        android:id="@+id/ibLeave"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:src="@drawable/leavel" />
+
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	    </LinearLayout>
+
+	    <ImageButton
+	        android:id="@+id/ibTrialstop"
+	        android:layout_width="100dp"
+	        android:layout_height="100dp"
+	        android:layout_marginEnd="50dp"
+	        android:layout_marginLeft="50dp"
+	        android:layout_marginRight="50dp"
+	        android:layout_marginTop="15dp"
+	        android:gravity="center_vertical"
+	        android:onClick="onStopClick"
+	        android:src="@drawable/btn_rs" />
+	    		
+	    <LinearLayout
+			android:id="@+id/linearLayout6"
+			android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_marginTop="21dp" >
+
+	        <EditText
+	            android:id="@+id/editText1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="25dp"
+	            android:layout_weight="1"
+	            android:ems="10"
+	            android:textColor="#000000"
+	            android:textSize="25sp" />
+	        	    
+	    <ImageButton
+	        android:id="@+id/ibBack"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginEnd="50dp"
+	        android:layout_marginRight="50dp"
+	        android:layout_marginTop="30dp"
+	        android:src="@drawable/btn_back" />
+	    
+	    <ImageButton
+	        android:id="@+id/ibSave"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="30dp"
+	        android:src="@drawable/btn_save" />
+
+	     </LinearLayout>
+
+	    <Button
+	        android:id="@+id/ibNext"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:layout_marginBottom="50dp"
+	        android:layout_marginEnd="50dp"
+	        android:layout_marginLeft="50dp"
+	        android:layout_marginRight="50dp"
+	        android:layout_marginStart="50dp"
+	        android:layout_marginTop="0dp"
+	        android:text="NEXT" />
+
+</LinearLayout>
