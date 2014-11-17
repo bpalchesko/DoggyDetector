@@ -44,11 +44,30 @@ public class TrialRunActivity extends Activity {
 	Button btnNext;
 	EditText edText;
 	BloodWheel bw;
-	private static final String FORM_URL = "https://docs.google.com/a/seas.upenn.edu/forms/d/1ejBueRyDQLEFrqcddkEOIWUXCJFOHQ9IBZpCyJDrAJU/formResponse";
-	private static final String ADMIN_ENTRY = "entry.1749728713=";
-	private static final String DOG_ENTRY = "entry.273386690=";
-	private static final String T1_COMMENTS_ENTRY = "entry.2085137680=";
-	private static final String T2_COMMENTS_ENTRY = "entry.1880109834=";
+	private static final String FORM_URL = "https://docs.google.com/forms/d/1R8Oq1YvTVfrgxafxcGZaO6C_wca3Lv_JV3Su_MIEnaU/formResponse";
+	private static final String DOG_NAME = "entry_434753845=";
+	private static final String SUCCESS_RATE = "entry_1038306324=";
+	private static final String SENSITIVITY = "entry_1407605094=";
+	private static final String SPEC_NORMAL = "entry_494446774=";
+	private static final String SPEC_BENIGN = "entry_515845283=";
+	private static final String SPEC_TOTAL = "entry_921527013=";
+	private static final String TOTAL_TNN = "entry_333632433=";
+	private static final String TOTAL_TNB = "entry_1197022772=";
+	private static final String TOTAL_FPN = "entry_216613810=";
+	private static final String TOTAL_FPB = "entry_368331932=";
+	private static final String TOTAL_FPE = "entry_1938978197=";
+	private static final String TOTAL_FN = "entry_1347207823=";
+	private static final String TOTAL_TP = "entry_918273940=";
+	private static final String NOTES = "entry_1907361889=";
+	private static final String TESTER = "entry_270032351=";
+	private static final String[] TRIALS = new String[] {"entry_873369963=",
+		"entry_82683764=", "entry_403485159=", "entry_1585414345=", 
+		"entry_809017169=", "entry_14494942=", "entry_487964326=",
+		"entry_983571317=", "entry_964442581=", "entry_786666526=",
+		"entry_1055685979=", "entry_560711180=", "entry_2037751422=", "entry_1516979135=",
+		"entry_1970120858=", "entry_670425955=", "entry_2145047438=",
+		"entry_802163021=", "entry_1561108562=", "entry_1290361149="};
+	
 	static ArrayList<String> results = new ArrayList<String>();
 	String btn1Text=""; //### Primitive obsession, refactor this
 	String btn2Text="";
@@ -361,11 +380,13 @@ public void postData() {
 	
 	//String fullUrl = "https://docs.google.com/forms/d/19Nh83jx9ogs4urOVIeRnC3bpBG4IOd26A8J1-NJxhu4/formResponse";
 	HttpRequest mReq = new HttpRequest();
-	String col1 = results.get(0);
-	String col2 = results.get(1);
+	String trialResults = "";
+	for (int i = 0; i < results.size(); i++){
+		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
+	}
 	
-	String data = T1_COMMENTS_ENTRY + URLEncoder.encode(col1) + "&" + 
-				T2_COMMENTS_ENTRY + URLEncoder.encode(col2);
+	String data = DOG_NAME + URLEncoder.encode("woof") + "&" + 
+				TESTER + URLEncoder.encode("Lorenzo") + trialResults;
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
 	results.clear();
