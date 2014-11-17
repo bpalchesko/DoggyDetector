@@ -16,6 +16,7 @@ public class TrialCalculation {
 	int FPB = 0;
 	int FPE = 0;
 	int FN = 0;
+	public boolean complete;
 
 	public TrialCalculation(ArrayList<String> rawResults, int malignant,
 			int benign, int normal) {
@@ -24,6 +25,7 @@ public class TrialCalculation {
 		this.benign = benign;
 		this.normal = normal;
 		encodedResults = encodeAll();
+		complete = true;
 	}
 
 	/**
@@ -37,6 +39,7 @@ public class TrialCalculation {
 		String[] raw = result.split("\\s+");
 		String encoded = "";
 		for (int i = 0; i < raw.length; i++) {
+			if(raw[i].length() > 1){
 			if (raw[i].charAt(0) == 'P') {
 				int slotNumber = Integer.parseInt(raw[i].substring(1));
 				if (slotNumber == malignant) {
@@ -64,11 +67,16 @@ public class TrialCalculation {
 					encoded += "FPE(" + slotNumber + ")";
 					FPE++;
 				}
-			} else if (raw[i].charAt(0) == 'L') {
+			}
+			}
+			else if (raw[i].length() > 0){
+			if (raw[i].charAt(0) == 'L') {
 				encoded += "L ";
 			}
 		}
+		}
 		return encoded;
+
 	}
 
 	/**
@@ -84,6 +92,7 @@ public class TrialCalculation {
 		}
 		return encoded;
 	}
+	
 
 	/**
 	 * Calculates the sensitivity from the list of tests.

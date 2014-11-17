@@ -47,7 +47,7 @@ public class TrialRunActivity extends Activity {
 	Button btnNext;
 	EditText edText;
 	TextView etNumber;
-	BloodWheel bw;
+	static BloodWheel bw;
 	private static final String FORM_URL = "https://docs.google.com/forms/d/1R8Oq1YvTVfrgxafxcGZaO6C_wca3Lv_JV3Su_MIEnaU/formResponse";
 	private static final String DOG_NAME = "entry_434753845=";
 	private static final String SUCCESS_RATE = "entry_1038306324=";
@@ -77,7 +77,12 @@ public class TrialRunActivity extends Activity {
 	String btn2Text="";
 	String btn3Text="";
 	int counter=1;
+
 	
+    
+    public void calculate(){
+
+    }
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +113,9 @@ public class TrialRunActivity extends Activity {
 		}
 		
 		styleButtons();
+		
+
+        
 		
 
         btntrailPass1.setOnClickListener(new OnClickListener()
@@ -170,14 +178,14 @@ public class TrialRunActivity extends Activity {
         	  PostJson task = new PostJson();
         	  counter=1;
         	  etNumber.setText(""+counter);
+
         	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
-        	  results.clear();
         	  edText.setText("");
         	  
         	  
           }
         });
-        
+
         btnNext.setOnClickListener(new OnClickListener()
         {
           public void onClick(View v)
@@ -388,9 +396,10 @@ public class TrialRunActivity extends Activity {
 
 public void postData() {
 	
-	//String fullUrl = "https://docs.google.com/forms/d/19Nh83jx9ogs4urOVIeRnC3bpBG4IOd26A8J1-NJxhu4/formResponse";
+	String fullUrl = "https://docs.google.com/forms/d/19Nh83jx9ogs4urOVIeRnC3bpBG4IOd26A8J1-NJxhu4/formResponse";
 	HttpRequest mReq = new HttpRequest();
 	String trialResults = "";
+    
 	for (int i = 0; i < results.size(); i++){
 		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
 	}
@@ -404,7 +413,7 @@ public void postData() {
 } 
 
 @Override
-protected Void doInBackground(HashMap<String, Object>... arg0) { 
+protected Void doInBackground(HashMap<String, Object>... arg0) {
 	String json = new GsonBuilder().create().toJson(arg0[0], Map.class);
 	try {
 		postData();
@@ -412,10 +421,21 @@ protected Void doInBackground(HashMap<String, Object>... arg0) {
 		e.printStackTrace();
 	} 
 	return null; 		
+	}
+
+@Override
+protected void onPreExecute(){
+  	TrialCalculation tc = new TrialCalculation(results, bw.Malignant, bw.Benign, bw.Control);
+	tc.encodeAll();
+	   // ArrayList<String> encodedResults = tc.getEncodedResults();
+	results = tc.getEncodedResults();
+	
 }
 
 
+
 }
+
 
 private static class GetSessions extends AsyncTask<Void, Void, Void> {
 
