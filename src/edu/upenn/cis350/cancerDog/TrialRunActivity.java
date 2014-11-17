@@ -3,6 +3,7 @@ package edu.upenn.cis350.cancerDog;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import android.content.SharedPreferences;
+import android.content.Context;
+
 
 import com.google.gson.GsonBuilder;
 
@@ -67,6 +71,7 @@ public class TrialRunActivity extends Activity {
 		"entry_1055685979=", "entry_560711180=", "entry_2037751422=", "entry_1516979135=",
 		"entry_1970120858=", "entry_670425955=", "entry_2145047438=",
 		"entry_802163021=", "entry_1561108562=", "entry_1290361149="};
+	private static String dog = ""; 
 	
 	static ArrayList<String> results = new ArrayList<String>();
 	String btn1Text=""; //### Primitive obsession, refactor this
@@ -88,6 +93,12 @@ public class TrialRunActivity extends Activity {
         btnSave = (ImageButton) findViewById(R.id.ibSave);
         btnNext = (Button) findViewById(R.id.ibNext);
         edText = (EditText) findViewById(R.id.editText1);
+        
+        SharedPreferences preferences = this.getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog." + "dogs", Context.MODE_PRIVATE);
+    	ArrayList<String> dogs = new ArrayList<String>();
+    	String[] dogArray = this.getResources().getStringArray(R.array.dogs);
+		dog = dogArray[0];
         
         Intent data = (Intent) getIntent();
         if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
@@ -383,9 +394,10 @@ public void postData() {
 	String trialResults = "";
 	for (int i = 0; i < results.size(); i++){
 		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
-	}
+	}	
 	
-	String data = DOG_NAME + URLEncoder.encode("woof") + "&" + 
+	
+	String data = DOG_NAME + URLEncoder.encode(dog) + "&" + 
 				TESTER + URLEncoder.encode("Lorenzo") + trialResults;
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
