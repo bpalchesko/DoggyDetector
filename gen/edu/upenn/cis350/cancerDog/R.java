@@ -69,7 +69,8 @@ public final class R {
         public static final int btn_y8=0x7f020025;
         public static final int btn_y9=0x7f020026;
         public static final int ic_launcher=0x7f020027;
-        public static final int leavel=0x7f020028;
+        public static final int ic_launcher1=0x7f020028;
+        public static final int leavel=0x7f020029;
     }
     public static final class id {
         public static final int Begin=0x7f09003c;
