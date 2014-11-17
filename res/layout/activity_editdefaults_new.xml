@@ -6,7 +6,7 @@
     android:background="#FFFFFF"
     android:columnCount="1"
     tools:context=".EditDefaultActivityNew" >
-    
+
     <Button
         android:id="@+id/StartTrialButton"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         android:layout_gravity="start|top"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:layout_row="0"
         android:text="@string/control"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -61,7 +61,7 @@
             android:layout_gravity="start|top"
             android:layout_marginLeft="220dp"
             android:layout_marginStart="220dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="150dp"
             android:layout_row="0"
             android:text="@string/benign"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -76,7 +76,7 @@
             android:layout_gravity="start|top"
             android:layout_marginLeft="400dp"
             android:layout_marginStart="400dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="150dp"
             android:layout_row="0"
             android:text="@string/malignant"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -91,24 +91,9 @@
             android:layout_gravity="start|center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="150dp"
             android:layout_row="0"
             android:text="@string/default_tester"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="35sp" />
-
-        <TextView
-            android:id="@+id/SendDataTo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="450dp"
-            android:layout_row="0"
-            android:text="@string/send_data_to_"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#000000"
             android:textSize="35sp" />
@@ -121,7 +106,7 @@
             android:layout_gravity="start|center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="650dp"
+            android:layout_marginTop="500dp"
             android:layout_row="0"
             android:text="@string/dogs_"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -136,7 +121,7 @@
             android:layout_gravity="start|top"
             android:layout_marginLeft="50dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="275dp"
+            android:layout_marginTop="225dp"
             android:layout_row="0" />
 
         <NumberPicker
@@ -147,7 +132,7 @@
             android:layout_gravity="start|top"
             android:layout_marginLeft="250dp"
             android:layout_marginStart="250dp"
-            android:layout_marginTop="275dp"
+            android:layout_marginTop="225dp"
             android:layout_row="0" />
         
         <NumberPicker
@@ -158,9 +143,34 @@
             android:layout_gravity="start|top"
             android:layout_marginLeft="450dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="275dp"
-            android:layout_row="0"/>
+            android:layout_marginTop="225dp"
+            android:layout_row="0" />
 
+        <Spinner
+            android:id="@+id/handlerSpinner1"
+            android:layout_width="match_parent"
+            android:layout_column="0"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginEnd="25dp"
+            android:layout_marginLeft="275dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginStart="275dp"
+            android:layout_marginTop="150dp"
+            android:layout_row="0"
+            android:entries="@array/handlers" />
 
+        <Spinner
+            android:id="@+id/dogSpinner1"
+            style="@style/AppBaseTheme"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:layout_marginEnd="25dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="500dp"
+            android:layout_row="0"
+            android:textColor="@android:color/black" />
 
 </GridLayout>
+
