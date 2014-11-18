@@ -103,6 +103,17 @@ public class TrialCalculation {
 		if(TP == 0 && FN == 0) return 0.0;
 		return ((double)TP) / ((double)(TP + FN));
 	}
+	
+
+	/**
+	 * Calculates the successRate from the list of tests.
+	 * 
+	 * @return sensitivity
+	 */
+	public double getSuccess() {
+		if(TP == 0 && FN == 0) return 0.0;
+		return ((double)TP) / ((double)(TP + FPE + FPB));
+	}
 
 	/**
 	 * Calculates specificity normal from the list of tests.

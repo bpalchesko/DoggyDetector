@@ -399,12 +399,41 @@ public void postData() {
 	String fullUrl = "https://docs.google.com/forms/d/19Nh83jx9ogs4urOVIeRnC3bpBG4IOd26A8J1-NJxhu4/formResponse";
 	HttpRequest mReq = new HttpRequest();
 	String trialResults = "";
+  	TrialCalculation tc = new TrialCalculation(results, bw.Malignant, bw.Benign, bw.Control);
+	results = tc.getEncodedResults();
     
 	for (int i = 0; i < results.size(); i++){
 		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
 	}
+	Double sens = tc.getSensitivity();
+	Double specNorm = tc.getSpecificityNormal();
+	Double specBen = tc.getSpecificityBenign();
+	Double specTot = tc.getSpecTotal();
+	Double suc = tc.getSuccess();
+	Integer tp = tc.TP;
+	Integer tnn = tc.TNN;
+	Integer tnb = tc.TNB;
+	Integer fpn = tc.FPN;
+	Integer fpb = tc.FPB;
+	Integer fpe = tc.FPE;
+	Integer fn = tc.FN;
 	
-	String data = DOG_NAME + URLEncoder.encode("woof") + "&" + 
+	String data = DOG_NAME + URLEncoder.encode("woof") + "&" +
+			SENSITIVITY + URLEncoder.encode(sens.toString()) + "&" +
+			TOTAL_TP + URLEncoder.encode(tp.toString()) + "&" +
+			TOTAL_TNN + URLEncoder.encode(tnn.toString()) + "&" +
+			TOTAL_TNB + URLEncoder.encode(tnb.toString()) + "&" +
+			TOTAL_FPN + URLEncoder.encode(fpn.toString()) + "&" +
+			TOTAL_FPB + URLEncoder.encode(fpb.toString()) + "&" +
+			TOTAL_FPE + URLEncoder.encode(fpe.toString()) + "&" +
+			TOTAL_FPN + URLEncoder.encode(fpn.toString()) + "&" +
+			TOTAL_FPN + URLEncoder.encode(fpn.toString()) + "&" +
+			TOTAL_FN + URLEncoder.encode(fn.toString()) + "&" + 
+			SPEC_NORMAL  + URLEncoder.encode(specNorm.toString()) + "&" +
+			SPEC_BENIGN  + URLEncoder.encode(specBen.toString()) + "&" +
+			SPEC_TOTAL  + URLEncoder.encode(specTot.toString()) + "&" +
+			SUCCESS_RATE + URLEncoder.encode(suc.toString()) + "&" +
+			
 				TESTER + URLEncoder.encode("Lorenzo") + trialResults;
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
@@ -425,10 +454,7 @@ protected Void doInBackground(HashMap<String, Object>... arg0) {
 
 @Override
 protected void onPreExecute(){
-  	TrialCalculation tc = new TrialCalculation(results, bw.Malignant, bw.Benign, bw.Control);
-	tc.encodeAll();
-	   // ArrayList<String> encodedResults = tc.getEncodedResults();
-	results = tc.getEncodedResults();
+
 	
 }
 
