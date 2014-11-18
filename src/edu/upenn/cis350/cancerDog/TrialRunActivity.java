@@ -48,6 +48,8 @@ public class TrialRunActivity extends Activity {
 	EditText edText;
 	TextView etNumber;
 	static BloodWheel bw;
+	private static String currentDog;
+	private static String currentHandler;
 	private static final String FORM_URL = "https://docs.google.com/forms/d/1R8Oq1YvTVfrgxafxcGZaO6C_wca3Lv_JV3Su_MIEnaU/formResponse";
 	private static final String DOG_NAME = "entry_434753845=";
 	private static final String SUCCESS_RATE = "entry_1038306324=";
@@ -111,6 +113,13 @@ public class TrialRunActivity extends Activity {
 			Log.e("Loading Activity", "bw data not passed to activity");
 			bw = new BloodWheel();
 		}
+        
+    	SharedPreferences preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
+    	currentHandler = preferences.getString("current", "DEFAULT");
+    	preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.dogs", Context.MODE_PRIVATE);
+    	currentDog = preferences.getString("current", "DEFAULT");
 		
 		styleButtons();
 		
@@ -419,7 +428,7 @@ public void postData() {
 	Integer fpe = tc.FPE;
 	Integer fn = tc.FN;
 	
-	String data = DOG_NAME + URLEncoder.encode("woof") + "&" +
+	String data = DOG_NAME + URLEncoder.encode(currentDog) + "&" +
 			SENSITIVITY + URLEncoder.encode(sens.toString()) + "&" +
 			TOTAL_TP + URLEncoder.encode(tp.toString()) + "&" +
 			TOTAL_TNN + URLEncoder.encode(tnn.toString()) + "&" +
@@ -435,7 +444,7 @@ public void postData() {
 			SPEC_TOTAL  + URLEncoder.encode(specTot.toString()) + "&" +
 			SUCCESS_RATE + URLEncoder.encode(suc.toString()) + "&" +
 			
-				TESTER + URLEncoder.encode("Lorenzo") + trialResults;
+				TESTER + URLEncoder.encode(currentHandler) + trialResults;
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
 	results.clear();
