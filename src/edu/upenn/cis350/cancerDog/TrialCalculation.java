@@ -111,7 +111,7 @@ public class TrialCalculation {
 	 * @return sensitivity
 	 */
 	public double getSuccess() {
-		if(TP == 0 && FN == 0) return 0.0;
+		if(TP == 0 && FPE == 0 && FPB == 0) return 0.0;
 		return ((double)TP) / ((double)(TP + FPE + FPB));
 	}
 

@@ -18,6 +18,9 @@ import com.google.gson.GsonBuilder;
 
 //import edu.upenn.cis350.cancerDog.Trial.GetSessions;
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.app.DialogFragment;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,7 +39,7 @@ import android.widget.Toast;
 
 import java.util.*;
 
-public class TrialRunActivity extends Activity {
+public class TrialRunActivity extends FragmentActivity  implements SaveNotification.NoticeDialogListener {
 	ImageButton btntrailPass1;
 	ImageButton btntrailPass2;
 	ImageButton btntrailPass3;
@@ -47,6 +50,7 @@ public class TrialRunActivity extends Activity {
 	Button btnNext;
 	EditText edText;
 	TextView etNumber;
+	TextView etDog;
 	static BloodWheel bw;
 	private static String currentDog;
 	private static String currentHandler;
@@ -79,6 +83,7 @@ public class TrialRunActivity extends Activity {
 	String btn2Text="";
 	String btn3Text="";
 	int counter=1;
+	static String notes = "";
 
 	
     
@@ -101,6 +106,7 @@ public class TrialRunActivity extends Activity {
         btnNext = (Button) findViewById(R.id.ibNext);
         edText = (EditText) findViewById(R.id.editText1);
         etNumber = (TextView) findViewById(R.id.NumberText);
+        etDog = (TextView) findViewById(R.id.DogTextName);
         Intent data = (Intent) getIntent();
         if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
 		      bw = new BloodWheel();
@@ -114,6 +120,8 @@ public class TrialRunActivity extends Activity {
 			bw = new BloodWheel();
 		}
         
+
+        
     	SharedPreferences preferences = getSharedPreferences(
     			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
     	currentHandler = preferences.getString("current", "DEFAULT");
@@ -123,6 +131,7 @@ public class TrialRunActivity extends Activity {
 		
 		styleButtons();
 		
+        etDog.setText(currentDog);
 
         
 		
@@ -181,16 +190,7 @@ public class TrialRunActivity extends Activity {
         {
           public void onClick(View v)
           {
-        	  Toast.makeText(getApplicationContext(), "Trial Saved =)",
-        			   Toast.LENGTH_LONG).show();
-        	  HashMap<String, Object> trial = new HashMap<String, Object>();
-        	  PostJson task = new PostJson();
-        	  counter=1;
-        	  etNumber.setText(""+counter);
-        	  if(edText.getText().toString() != "")
-        		  results.add(edText.getText().toString());
-        	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
-        	  edText.setText("");
+        	  showNoticeDialog();
         	  
         	  
           }
@@ -220,6 +220,40 @@ public class TrialRunActivity extends Activity {
         
         
     }//end oncreate
+	
+	
+	 public void showNoticeDialog() {
+	        // Create an instance of the dialog fragment and show it
+	        DialogFragment dialog = new SaveNotification();
+	        dialog.show(getFragmentManager(), "SaveNotification");
+	    }
+
+	    // The dialog fragment receives a reference to this Activity through the
+	    // Fragment.onAttach() callback, which it uses to call the following methods
+	    // defined by the NoticeDialogFragment.NoticeDialogListener interface
+	    @Override
+	    public void onDialogPositiveClick(DialogFragment dialog) {
+	    	//View v = dialog.getView();
+	    	//EditText e = (EditText) v.findViewById(R.layout.finishedNotes);
+	    	
+	    	Toast.makeText(getApplicationContext(), "Trial Saved =)",
+     			   Toast.LENGTH_LONG).show();
+     	  HashMap<String, Object> trial = new HashMap<String, Object>();
+     	  PostJson task = new PostJson();
+     	  counter=1;
+     	  etNumber.setText(""+counter);
+     	  if(edText.getText().toString() != "")
+     		  results.add(edText.getText().toString());
+     	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
+     	  edText.setText("");
+     	  
+	    }
+
+	    @Override
+	    public void onDialogNegativeClick(DialogFragment dialog) {
+	        // User touched the dialog's negative button
+	    }
+	
 	
 	
 	public void onStopClick (View v) {
