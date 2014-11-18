@@ -178,7 +178,8 @@ public class TrialRunActivity extends Activity {
         	  PostJson task = new PostJson();
         	  counter=1;
         	  etNumber.setText(""+counter);
-
+        	  if(edText.getText().toString() != "")
+        		  results.add(edText.getText().toString());
         	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
         	  edText.setText("");
         	  
