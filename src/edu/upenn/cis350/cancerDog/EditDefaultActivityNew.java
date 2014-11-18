@@ -98,15 +98,22 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		for (String s : dogs) {
 			dogAdapter.add(s);
 		}
-		dogAdapter.add("Add +");
+		//dogAdapter.add("Add +"); TODO add back
 		dogSpinner = (Spinner) findViewById(R.id.dogSpinner1);
 		dogSpinner.setAdapter(dogAdapter);
 		dogSpinner
 				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 					public void onItemSelected(AdapterView<?> parentView,
-							View selectedItemView, int position, long id) {
+							View selectedItemView, int position, long id) {	
 						selected(position, 1, dogs);
 						dogSpinner.setSelection(position);
+						String name = dogSpinner.getSelectedItem().toString();
+						SharedPreferences preferences = getSharedPreferences(
+								"edu.upenn.cis350.cancerDog.dogs", Context.MODE_PRIVATE);
+						SharedPreferences.Editor editor = preferences.edit();
+						editor.clear();
+						editor.putString("current", name);
+						editor.commit();
 						
 					}
 
@@ -123,7 +130,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		for (String s : handlers) {
 			handlerAdapter.add(s);
 		}
-		handlerAdapter.add("Add +");
+		//handlerAdapter.add("Add +"); TODO add back
 
 		handlerSpinner = (Spinner) findViewById(R.id.handlerSpinner1);
 		handlerSpinner.setAdapter(handlerAdapter);
@@ -133,7 +140,13 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 							View selectedItemView, int position, long id) {
 						selected(position, 2, handlers);
 						handlerSpinner.setSelection(position);
-						
+						String name = handlerSpinner.getSelectedItem().toString();
+						SharedPreferences preferences = getSharedPreferences(
+								"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
+						SharedPreferences.Editor editor = preferences.edit();
+						editor.clear();
+						editor.putString("current", name);
+						editor.commit();
 						
 					}
 
@@ -190,13 +203,14 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 			set.remove(which);
 			set.add(which, true);
 		} else {
-			if (position != 0) {
-				if (position <= list.size()) {
-					deletePrompt(list, position - 1, 0);
-				} else {
-					addPrompt(list);
-				}
-			}
+//			if (position != 0) { //TODO add back with list.size() - 1
+//				if (position <= list.size()) {
+//					deletePrompt(list, position - 1, 0);
+//				} else {
+//					addPrompt(list);
+//					
+//				}
+//			}
 		}
 	}
 
@@ -262,14 +276,14 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		for (String s : dogs) {
 			dogAdapter.add(s);
 		}
-		dogAdapter.add("Add +");
+		//dogAdapter.add("Add +"); TODO add back
 		
 		handlerAdapter.clear();
 		handlerAdapter.add("Click to edit");
 		for (String s : handlers) {
 			handlerAdapter.add(s);
 		}
-		handlerAdapter.add("Add +");
+		//handlerAdapter.add("Add +"); TODO add back
 	}
 
 	// when the default spinner is clicked, this is called to get the
