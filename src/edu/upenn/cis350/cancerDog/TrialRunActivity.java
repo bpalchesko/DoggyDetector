@@ -459,6 +459,7 @@ public void postData() {
     
 	for (int i = 0; i < results.size(); i++){
 		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
+		trialResults += "&" + TRIAL_NOTES[i] + "Notes";
 	}
 	Double sens = tc.getSensitivity();
 	Double specNorm = tc.getSpecificityNormal();
@@ -516,86 +517,6 @@ protected void onPreExecute(){
 
 
 }
-
-
-private static class GetSessions extends AsyncTask<Void, Void, Void> {
-
-@Override
-protected Void doInBackground(Void... arg0) {
-	/* try {
-		HttpGet httpGet = new HttpGet("http://pennvet.herokuapp.com/");
-		HttpResponse response = new DefaultHttpClient()
-				.execute(httpGet);
-		HttpEntity entity = response.getEntity();
-		String csv = EntityUtils.toString(entity, "UTF-8");
-		String[] lines = csv.split("\n");
-		for (int i = 1; i < lines.length; i++) {
-			Trial t = new Trial();
-			String[] parts = lines[i].split(",");
-			t.sessionNumber = Integer.parseInt(parts[0]);
-			t.date = parts[1];
-			t.time = parts[2];
-			t.handler = parts[3];
-			t.dog = parts[4];
-			t.videographer = parts[5];
-			t.observers = parts[6];
-			t.expName = parts[7];
-			t.expSlot = Integer.parseInt(parts[8]);
-			t.controls = new HashMap<Integer, String>();
-			String[] controlPairs = parts[9].split(";");
-			for (String pair : controlPairs) {
-				String[] keyValue = pair.split(":");
-				if (keyValue.length == 2) {
-					t.controls.put(Integer.parseInt(keyValue[0]),
-							keyValue[1]);
-				}
-			}
-
-			t.notes = new ArrayList<String>();
-			t.trialResults = new ArrayList<Result[]>();
-			t.topArms = new ArrayList<Integer>();
-			if (t.sessionNumber == 11) {
-				int debug = 1;
-			}
-			for (int j = 0; j < (parts.length - 9) / 3; j++) {
-				ArrayList<Result> results = new ArrayList<Result>();
-				Result r = new Result();
-				String[] resultPairs = parts[10 + j * 3].split(";");
-				for (int k = 0; k < resultPairs.length; k++) {
-					String[] keyValue = resultPairs[k].split(":");
-					if (keyValue[0].equals("numFalse")) {
-						r.numFalse = Integer.parseInt(keyValue[1]);
-					} else if (keyValue[0].equals("numMiss")) {
-						r.numMiss = Integer.parseInt(keyValue[1]);
-					} else if (keyValue[0].equals("numSuccess")) {
-						r.numSuccess = Integer.parseInt(keyValue[1]);
-						results.add(r);
-						r = new Result();
-					}
-				}
-				Result[] rs = new Result[results.size()];
-				for (int k = 0; k < results.size(); k++) {
-					rs[k] = results.get(k);
-				}
-				t.trialResults.add(rs);
-				t.notes.add(parts[11 + j * 3]);
-				t.topArms.add(Integer.parseInt(parts[12 + j * 3]));
-			}
-			t.save(true, false);
-		}
-	} catch (UnsupportedEncodingException e) {
-		e.printStackTrace();
-	} catch (ClientProtocolException e) {
-		e.printStackTrace();
-	} catch (IOException e) {
-		e.printStackTrace();
-	} */
-	return null;
-}
-
-}
-
-
 
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
