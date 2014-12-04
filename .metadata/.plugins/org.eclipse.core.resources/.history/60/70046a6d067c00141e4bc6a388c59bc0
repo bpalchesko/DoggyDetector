@@ -1,0 +1,186 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="fill_parent"
+android:background="#FFFFFF"
+tools:context="com.example.testbuttons.MainActivity"
+android:orientation="vertical"
+android:gravity="center_horizontal" >
+<RelativeLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content" >
+<TextView
+android:id="@+id/trialNumberText"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft="15dp"
+android:text="Trial:"
+android:textAppearance="?android:attr/textAppearanceMedium"
+android:textColor="#000000"
+android:textSize="35sp" />
+<ImageButton
+android:id="@+id/ibTrial1pass"
+android:layout_width="200dp"
+android:layout_height="100dp"
+android:layout_alignParentTop="true"
+android:layout_centerHorizontal="true"
+android:layout_marginTop="15dp"
+android:gravity="center_vertical"
+android:src="@drawable/btn_g1" />
+<TextView
+android:id="@+id/NumberText"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignBottom="@+id/trialNumberText"
+android:layout_alignParentLeft="true"
+android:layout_marginLeft="115dp"
+android:layout_marginStart="100dp"
+android:text="1"
+android:textAppearance="?android:attr/textAppearanceMedium"
+android:textColor="#000000"
+android:textSize="35sp" />
+<TextView
+android:id="@+id/DogText"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft="450dp"
+android:text="Dog:"
+android:textAppearance="?android:attr/textAppearanceMedium"
+android:textColor="#000000"
+android:textSize="20sp" />
+<TextView
+android:id="@+id/DogTextName"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginLeft="500dp"
+android:textAppearance="?android:attr/textAppearanceMedium"
+android:textColor="#000000"
+android:textSize="20sp" />
+<ImageButton
+android:id="@+id/ibNotes"
+android:layout_width="200dp"
+android:layout_height="100dp"
+android:layout_marginTop="15dp"
+android:layout_marginLeft="450dp"
+android:gravity="center_vertical"
+android:onClick="onNotesClick"
+android:src="@drawable/btn_notes" />
+</RelativeLayout>
+<ImageButton
+android:id="@+id/ibTrial2pass"
+android:layout_width="200dp"
+android:layout_height="100dp"
+android:layout_marginTop="15dp"
+android:gravity="center_vertical"
+android:src="@drawable/btn_g5" />
+<ImageButton
+android:id="@+id/ibTrial3pass"
+android:layout_width="200dp"
+android:layout_height="100dp"
+android:layout_marginTop="15dp"
+android:gravity="center_vertical"
+android:src="@drawable/btn_g9" />
+<LinearLayout
+android:id="@+id/linearLayout1"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="21dp" >
+</LinearLayout>
+<ImageButton
+android:id="@+id/ibLeave"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="5dp"
+android:src="@drawable/leavel" />
+<ImageButton
+android:id="@+id/ibTrialstop"
+android:layout_width="300dp"
+android:layout_height="100dp"
+android:layout_marginEnd="50dp"
+android:layout_marginLeft="50dp"
+android:layout_marginRight="50dp"
+android:layout_marginStart="50dp"
+android:layout_marginTop="15dp"
+android:gravity="center_vertical"
+android:onClick="onStopClick"
+android:src="@drawable/btn_rs" />
+<LinearLayout
+android:id="@+id/linearLayout6"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="21dp"
+android:orientation="horizontal" >
+<EditText
+android:id="@+id/editText1"
+android:layout_width="500dp"
+android:layout_height="wrap_content"
+android:layout_marginTop="25dp"
+android:ems="10"
+android:inputType="text"
+android:textColor="#000000"
+android:textSize="25sp" />
+<ImageButton
+android:id="@+id/ibBack"
+android:layout_width="75dp"
+android:layout_height="75dp"
+android:layout_marginEnd="50dp"
+android:layout_marginRight="50dp"
+android:layout_marginTop="10dp"
+android:src="@drawable/btn_back" />
+</LinearLayout>
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal" >
+<Button
+android:id="@+id/ibSave"
+style="?android:attr/buttonStyleSmall"
+android:layout_width="0dp"
+android:layout_height="99dp"
+android:layout_marginBottom="50dp"
+android:layout_marginEnd="50dp"
+android:layout_marginLeft="25dp"
+android:layout_marginRight="50dp"
+android:layout_marginStart="50dp"
+android:layout_marginTop="15dp"
+android:layout_weight="0.20"
+android:text="Finish Trials"
+android:textColor="#000000"
+android:textSize="30sp" />
+<Button
+android:id="@+id/ibNext"
+style="?android:attr/buttonStyleSmall"
+android:layout_width="0dp"
+android:layout_height="99dp"
+android:layout_marginBottom="50dp"
+android:layout_marginEnd="50dp"
+android:layout_marginLeft="25dp"
+android:layout_marginRight="50dp"
+android:layout_marginStart="50dp"
+android:layout_marginTop="15dp"
+android:layout_weight="0.20"
+android:text="Next Trial"
+android:textColor="#000000"
+android:textSize="30sp" />
+</LinearLayout>
+<LinearLayout
+android:id="@+id/linearLayout2"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="21dp" >
+</LinearLayout>
+<LinearLayout
+android:id="@+id/linearLayout3"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_marginTop="21dp" >
+</LinearLayout>
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal" >
+</LinearLayout>
+</LinearLayout>
