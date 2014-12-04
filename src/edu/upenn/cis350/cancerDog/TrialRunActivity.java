@@ -71,6 +71,8 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	private static final String TOTAL_TP = "entry_918273940=";
 	private static final String NOTES = "entry_1907361889=";
 	private static final String TESTER = "entry_270032351=";
+	private static final String TEMPERATURE = "entry_2068466040=";
+	private static final String HUMIDITY = "entry_2021874211=";
 	private static final String[] TRIALS = new String[] {"entry_873369963=",
 		"entry_82683764=", "entry_403485159=", "entry_1585414345=", 
 		"entry_809017169=", "entry_14494942=", "entry_487964326=",
@@ -78,6 +80,13 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 		"entry_1055685979=", "entry_560711180=", "entry_2037751422=", "entry_1516979135=",
 		"entry_1970120858=", "entry_670425955=", "entry_2145047438=",
 		"entry_802163021=", "entry_1561108562=", "entry_1290361149="};
+	private static final String[] TRIAL_NOTES = new String[] {"entry_1440152102=",
+		"entry_1922376403=", "entry_1854046377=", "entry_1970338951=", 
+		"entry_1225458375=", "entry_718995831=", "entry_765686634=",
+		"entry_516681620=", "entry_1297993719=", "entry_1692870716=",
+		"entry_113042049=", "entry_1084028390=", "entry_1740623401=", "entry_1142692779=",
+		"entry_404381647=", "entry_39169021=", "entry_74263144=",
+		"entry_1148593787=", "entry_1030777065=", "entry_861331498="};
 	
 	static ArrayList<String> results = new ArrayList<String>();
 	String btn1Text=""; //### Primitive obsession, refactor this
