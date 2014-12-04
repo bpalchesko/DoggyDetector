@@ -335,6 +335,20 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	}
 
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+	    if (data==null)
+	    {
+	    	Log.e("Loading Activity", "nulls datas...");
+	    }
+	    else if (data.hasExtra("Benign")) {
+	    	bw.Benign = data.getExtras().getInt("Benign");
+	    	bw.Control = data.getExtras().getInt("Control");
+	    	bw.Malignant = data.getExtras().getInt("Malignant");
+	  	}
+	}
+	
+	@Override
 	public void finish(){
 		Intent i = new Intent();
 		bw.Benign=settingsBenignNumberPicker.getValue();

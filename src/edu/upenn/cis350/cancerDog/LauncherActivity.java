@@ -47,6 +47,9 @@ public class LauncherActivity extends Activity {
 	
 	public void onStartButtonClick(View v) {
 		Intent i = new Intent(this, EditDefaultActivityNew.class);
+		i.putExtra("Benign", bw.Benign);
+		i.putExtra("Control", bw.Control);  
+		i.putExtra("Malignant", bw.Malignant); 
 		startActivityForResult(i, ButtonClickActivity_ID);;
 	}
 	
