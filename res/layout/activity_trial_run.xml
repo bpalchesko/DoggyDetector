@@ -23,7 +23,7 @@
 
         <ImageButton
             android:id="@+id/ibTrial1pass"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -67,7 +67,7 @@
 
     <ImageButton
         android:id="@+id/ibTrial2pass"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
@@ -75,7 +75,7 @@
 
     <ImageButton
         android:id="@+id/ibTrial3pass"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
@@ -99,7 +99,7 @@
 
 	<ImageButton
 	    android:id="@+id/ibTrialstop"
-	    android:layout_width="100dp"
+	    android:layout_width="300dp"
 	    android:layout_height="100dp"
 	    android:layout_marginEnd="50dp"
 	    android:layout_marginLeft="50dp"
@@ -142,14 +142,21 @@
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal" >
 
-	    <ImageButton
+	    <Button
 	        android:id="@+id/ibSave"
-	        android:layout_width="100dp"
-	        android:layout_height="100dp"
-	        android:layout_marginLeft="50dp"
+	       style="?android:attr/buttonStyleSmall"
+	        android:layout_width="0dp"
+	        android:layout_height="99dp"
+	        android:layout_marginBottom="50dp"
+	        android:layout_marginEnd="50dp"
+	        android:layout_marginLeft="25dp"
+	        android:layout_marginRight="50dp"
 	        android:layout_marginStart="50dp"
 	        android:layout_marginTop="15dp"
-	        android:src="@drawable/btn_save" />
+	        android:layout_weight="0.20"
+	        android:text="Finish Trials"
+            android:textColor="#000000"
+	        android:textSize="30sp" />
 
 	    <Button
 	        android:id="@+id/ibNext"
@@ -163,8 +170,9 @@
 	        android:layout_marginStart="50dp"
 	        android:layout_marginTop="15dp"
 	        android:layout_weight="0.20"
-	        android:text="Next"
-	        android:textSize="40sp" />
+	        android:text="Next Trial"
+	         android:textColor="#000000"
+	        android:textSize="30sp" />
 	</LinearLayout>
 	    
 	<LinearLayout
