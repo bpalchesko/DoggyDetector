@@ -47,7 +47,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	ImageButton btnleave;
 	ImageButton ibTrialstop;
 	ImageButton btnBack;
-	ImageButton btnSave;
+	Button btnSave;
 	Button btnNext;
 	EditText edText;
 	TextView etNumber;
@@ -103,7 +103,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         
         btnleave = (ImageButton) findViewById(R.id.ibLeave);
         btnBack = (ImageButton) findViewById(R.id.ibBack);
-        btnSave = (ImageButton) findViewById(R.id.ibSave);
+        btnSave = (Button) findViewById(R.id.ibSave);
         btnNext = (Button) findViewById(R.id.ibNext);
         edText = (EditText) findViewById(R.id.editText1);
 
