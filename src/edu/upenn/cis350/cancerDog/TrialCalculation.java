@@ -112,7 +112,7 @@ public class TrialCalculation {
 	 */
 	public double getSuccess() {
 		if(TP == 0 && FPE == 0 && FPB == 0) return 0.0;
-		return ((double)TP) / ((double)(TP + FPE + FPB));
+		return ((double)TP) / ((double)(TP + FPE + FPB + FPN));
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class TrialCalculation {
 	 */
 	public double getSpecTotal() {
 		if(TNN == 0 && TNB == 0 && FPN == 0  && FPB == 0) return 0.0;
-		return ((double)(TNN + TNB)) / ((double)(TNN + TNB + FPN + FPB));
+		return ((double)(TNN + TNB)) / ((double)(TNN + TNB + FPN + FPB + FPE));
 	}
 	
 	/**

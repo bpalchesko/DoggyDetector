@@ -36,6 +36,7 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.WindowManager;
 
 import java.util.*;
 
@@ -105,6 +106,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         btnSave = (ImageButton) findViewById(R.id.ibSave);
         btnNext = (Button) findViewById(R.id.ibNext);
         edText = (EditText) findViewById(R.id.editText1);
+
         etNumber = (TextView) findViewById(R.id.NumberText);
         etDog = (TextView) findViewById(R.id.DogTextName);
         Intent data = (Intent) getIntent();
@@ -217,7 +219,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 			}
   
           });
-        
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         
     }//end oncreate
 	
