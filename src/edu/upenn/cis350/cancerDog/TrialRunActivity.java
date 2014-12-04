@@ -47,6 +47,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	ImageButton btnleave;
 	ImageButton ibTrialstop;
 	ImageButton btnBack;
+	ImageButton ibNotes;
 	Button btnSave;
 	Button btnNext;
 	EditText edText;
@@ -109,7 +110,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         btntrailPass2 = (ImageButton) findViewById(R.id.ibTrial2pass);
         btntrailPass3 = (ImageButton) findViewById(R.id.ibTrial3pass);
         ibTrialstop = (ImageButton) findViewById(R.id.ibTrialstop);
-        
+        ibNotes = (ImageButton) findViewById(R.id.ibNotes);
         btnleave = (ImageButton) findViewById(R.id.ibLeave);
         btnBack = (ImageButton) findViewById(R.id.ibBack);
         btnSave = (Button) findViewById(R.id.ibSave);
@@ -269,6 +270,13 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	
 	public void onStopClick (View v) {
 		Intent i = new Intent(this, StopActivity.class); 
+		startActivityForResult(i,1);
+	}
+	
+	public void onNotesClick (View v) {
+		Intent i = new Intent(this, NotesActivity.class); 
+		if (notes!="")
+			i.putExtra("Notes", notes);
 		startActivityForResult(i,1);
 	}
 	
@@ -530,6 +538,9 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     	int stop = data.getExtras().getInt("Stop");
     	 String editTextStr = edText.getText().toString() + " S" + stop;
    	  edText.setText(editTextStr);
+  	}
+    else if (data.hasExtra("Notes")) {
+    	notes=data.getExtras().getString("Notes");
   	}
 }
 	

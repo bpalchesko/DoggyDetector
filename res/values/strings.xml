@@ -6,6 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="dialog_title">Experimental #</string>
     <string name="dialog_message">Please pick the experimental for #</string>
+    <string name="confirm_settings">Confirm Settings</string>
+    <string name="go_back">Back</string>
+    <string name="confirm">Confirm</string>
+    
     
     <string-array name="experimentals">
         <item>Malignant Cancer Blood Plasma</item>
@@ -58,5 +62,6 @@
         <string name="dog_">Dog:</string>
         <string name="tester_">Tester:</string>
         <string name="begin">Begin</string>
+  
     
 </resources>
