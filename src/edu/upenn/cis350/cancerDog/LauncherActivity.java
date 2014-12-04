@@ -45,13 +45,21 @@ public class LauncherActivity extends Activity {
 		startActivityForResult(i,ButtonClickActivity_ID);
 	}
 	
+	public void onStartButtonClick(View v) {
+		Intent i = new Intent(this, EditDefaultActivityNew.class);
+		startActivityForResult(i, ButtonClickActivity_ID);;
+	}
+	
 	public void onViewButtonClick(View v) {
 		Intent i = new Intent(this, ViewActivity.class);
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
 	public void onEditButtonClick(View v) {
-		Intent i = new Intent(this, EditActivity.class);
+		Intent i = new Intent(this, confirmSettings.class);
+		i.putExtra("Benign", bw.Benign);
+		i.putExtra("Control", bw.Control);  
+		i.putExtra("Malignant", bw.Malignant); 
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
