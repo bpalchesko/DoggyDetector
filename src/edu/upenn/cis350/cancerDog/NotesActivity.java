@@ -16,6 +16,14 @@ public class NotesActivity extends Activity {
 		setContentView(R.layout.activity_notes);
 		edText = (EditText) findViewById(R.id.editText1);
 		 Log.e("Loading Activity", "NotesActivity");
+		 Intent data = (Intent) getIntent();
+		  if (data==null)
+		    {// Do nothing
+		    }
+		    else if (data.hasExtra("Notes")) {
+		   	  edText.setText(data.getExtras().getString("Notes"));
+		  	}
+		 
 	}// oncreate
 
 	
@@ -52,6 +60,7 @@ public class NotesActivity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.e("Loading method", "onActivityResult...");
 		super.onActivityResult(requestCode, resultCode, data);
+
 	    if (data==null)
 	    {// Do nothing
 	    }

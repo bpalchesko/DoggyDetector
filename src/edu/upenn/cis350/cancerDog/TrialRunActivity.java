@@ -95,6 +95,9 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	String btn3Text="";
 	int counter=1;
 	static String notes = "";
+	static ArrayList<String> trialNotes = new ArrayList<String>();
+
+
 
 	
     
@@ -116,7 +119,7 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         btnSave = (Button) findViewById(R.id.ibSave);
         btnNext = (Button) findViewById(R.id.ibNext);
         edText = (EditText) findViewById(R.id.editText1);
-
+       
         etNumber = (TextView) findViewById(R.id.NumberText);
         etDog = (TextView) findViewById(R.id.DogTextName);
         Intent data = (Intent) getIntent();
@@ -204,7 +207,6 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
           {
         	  showNoticeDialog();
         	  
-        	  
           }
         });
 
@@ -216,6 +218,8 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         	 edText.setText("");
         	 counter++;
         	 etNumber.setText(""+counter);
+        	 trialNotes.add(notes);
+        	 notes = "";
           }
         });
         
@@ -256,8 +260,10 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
      	  etNumber.setText(""+counter);
      	  if(edText.getText().toString() != "")
      		  results.add(edText.getText().toString());
+     	  	  trialNotes.add(notes);
      	  task.execute((HashMap<String, Object>[]) (new HashMap[] { trial }));
      	  edText.setText("");
+     	  notes = "";
      	  
 	    }
 
@@ -273,8 +279,10 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 		startActivityForResult(i,1);
 	}
 	
+	
 	public void onNotesClick (View v) {
 		Intent i = new Intent(this, NotesActivity.class); 
+		Log.e("NOTES", notes);
 		if (notes!="")
 			i.putExtra("Notes", notes);
 		startActivityForResult(i,1);
@@ -467,7 +475,10 @@ public void postData() {
     
 	for (int i = 0; i < results.size(); i++){
 		trialResults += "&" + TRIALS[i] + URLEncoder.encode(results.get(i));
-		trialResults += "&" + TRIAL_NOTES[i] + "Notes";
+	}
+	
+	for (int i = 0; i < trialNotes.size(); i++){
+		trialResults += "&" + TRIAL_NOTES[i] + URLEncoder.encode(trialNotes.get(i));
 	}
 	Double sens = tc.getSensitivity();
 	Double specNorm = tc.getSpecificityNormal();
@@ -502,6 +513,7 @@ public void postData() {
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
 	results.clear();
+	trialNotes.clear();
 
 } 
 
