@@ -17,9 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnValueChangeListener;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class EditDefaultActivityNew extends Activity implements NumberPicker.OnValueChangeListener {
 	
@@ -58,17 +56,17 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		      bw.Control=data.getExtras().getInt("Control");
 		      bw.Benign=data.getExtras().getInt("Benign");
 		      bw.Malignant=data.getExtras().getInt("Malignant");
+		      Log.e("data", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		}
 		else
 		{
-			Log.e("Loading Activity", "bw data not passed to activity");
 			bw = new BloodWheel();
+			Log.e("data", "data not received");
 		}
 		      
 		settingsControlNumberPicker = (NumberPicker) findViewById(R.id.settingsControlNumberPicker);
 		settingsControlNumberPicker.setMinValue(1);
 		settingsControlNumberPicker.setMaxValue(12);
-		//settingsControlNumberPicker.setValue(1);
 		settingsControlNumberPicker.setValue(bw.Control);
 		settingsControlNumberPicker.setOnValueChangedListener(this);
 		// -16777216 is the number for black
@@ -77,7 +75,6 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		settingsBenignNumberPicker = (NumberPicker) findViewById(R.id.settingsBenignNumberPicker);
 		settingsBenignNumberPicker.setMinValue(1);
 		settingsBenignNumberPicker.setMaxValue(12);
-		//settingsBenignNumberPicker.setValue(1);
 		settingsBenignNumberPicker.setValue(bw.Benign);
 		settingsBenignNumberPicker.setOnValueChangedListener(this);
 		// -16777216 is the number for black
@@ -86,7 +83,6 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		settingsMalignantNumberPicker = (NumberPicker) findViewById(R.id.settingsMalignantNumberPicker);
 		settingsMalignantNumberPicker.setMinValue(1);
 		settingsMalignantNumberPicker.setMaxValue(12);
-		//settingsMalignantNumberPicker.setValue(1);
 		settingsMalignantNumberPicker.setValue(bw.Malignant);
 		settingsMalignantNumberPicker.setOnValueChangedListener(this);
 		// -16777216 is the number for black
@@ -335,7 +331,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	}
 
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
 		super.onActivityResult(requestCode, resultCode, data);
 	    if (data==null)
 	    {
@@ -345,11 +341,14 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	    	bw.Benign = data.getExtras().getInt("Benign");
 	    	bw.Control = data.getExtras().getInt("Control");
 	    	bw.Malignant = data.getExtras().getInt("Malignant");
+	    	settingsBenignNumberPicker.setValue(bw.Benign);
+	    	settingsControlNumberPicker.setValue(bw.Control);
+	    	settingsMalignantNumberPicker.setValue(bw.Malignant);
 	  	}
 	}
 	
 	@Override
-	public void finish(){
+	public void finish(){//If back on phone pressed, store data for next intent
 		Intent i = new Intent();
 		bw.Benign=settingsBenignNumberPicker.getValue();
 		bw.Control=settingsControlNumberPicker.getValue();

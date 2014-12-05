@@ -79,9 +79,10 @@ public final class R {
         public static final int BenignNum=0x7f090070;
         public static final int BenignText=0x7f090001;
         public static final int Button01=0x7f09006b;
+        public static final int ChangeSettings=0x7f09007c;
         public static final int Colon=0x7f090003;
         public static final int Configuration=0x7f09003b;
-        public static final int ConfirmSettings=0x7f090018;
+        public static final int ConfirmSettings=0x7f09007d;
         public static final int Control=0x7f09003c;
         public static final int ControlNum=0x7f09006f;
         public static final int ControlText=0x7f09000a;
@@ -92,7 +93,6 @@ public final class R {
         public static final int DogText=0x7f090045;
         public static final int DogTextName=0x7f090046;
         public static final int Dogs=0x7f09000d;
-        public static final int EditSettings=0x7f09007c;
         public static final int GridLayout1=0x7f090039;
         public static final int HandlerName=0x7f090076;
         public static final int HumidPercent=0x7f09007b;
@@ -107,7 +107,7 @@ public final class R {
         public static final int StartTrialButton=0x7f090009;
         public static final int Tester=0x7f090040;
         public static final int TesterName=0x7f090075;
-        public static final int action_settings=0x7f09007e;
+        public static final int action_settings=0x7f09007f;
         public static final int benign=0x7f09006d;
         public static final int button1=0x7f09001a;
         public static final int button2=0x7f09001b;
@@ -132,7 +132,7 @@ public final class R {
         public static final int exit=0x7f090017;
         public static final int experimentalLabel=0x7f090060;
         public static final int experimentalSpinner=0x7f090006;
-        public static final int finishedNotes=0x7f09007d;
+        public static final int finishedNotes=0x7f09007e;
         public static final int handler=0x7f090073;
         public static final int handlerSpinner=0x7f090002;
         public static final int handlerSpinner1=0x7f090011;
@@ -185,6 +185,7 @@ public final class R {
         public static final int spinner7=0x7f090059;
         public static final int spinner8=0x7f09005b;
         public static final int spinner9=0x7f090053;
+        public static final int startTrial=0x7f090018;
         public static final int temp=0x7f090078;
         public static final int tempDeg=0x7f09007a;
         public static final int tester=0x7f090072;
@@ -232,6 +233,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int begin=0x7f050018;
         public static final int benign=0x7f05000f;
+        public static final int change_settings=0x7f05001f;
         public static final int configuration_=0x7f050015;
         public static final int confirm=0x7f050007;
         public static final int confirm_settings=0x7f050005;
@@ -244,15 +246,21 @@ public final class R {
         public static final int doggy_detector=0x7f050009;
         public static final int dogs_=0x7f050013;
         public static final int go_back=0x7f050006;
+        public static final int handler=0x7f05001c;
         public static final int hello_world=0x7f050002;
+        public static final int humidity=0x7f05001b;
         public static final int malignant=0x7f050010;
         public static final int penn_working_dog_center=0x7f050008;
+        public static final int recorder=0x7f05001d;
         public static final int send_data_to_=0x7f050012;
         public static final int settings=0x7f05000c;
         public static final int start_new_trial=0x7f050014;
         public static final int start_trial=0x7f05000a;
+        public static final int temp=0x7f05001e;
+        public static final int tester=0x7f05001a;
         public static final int tester_=0x7f050017;
         public static final int view_history=0x7f05000b;
+        public static final int whiteSpaceFiller=0x7f050019;
     }
     public static final class style {
         /** 

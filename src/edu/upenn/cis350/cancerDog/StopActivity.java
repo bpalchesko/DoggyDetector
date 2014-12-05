@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 
 public class StopActivity extends Activity {
 	int stopValue;
@@ -16,7 +15,7 @@ public class StopActivity extends Activity {
 		setContentView(R.layout.activity_stop);
 		
 		 Log.e("Loading Activity", "StopActivity");
-	}// oncreate
+	}// on create
 	
 	
 	public void onStopClick1 (View v) {

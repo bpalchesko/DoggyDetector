@@ -34,31 +34,7 @@ public class LauncherActivity extends Activity {
 		}
 	}
 	
-	public void onLaunchButtonClick (View v) {
-		//setContentView(new WheelView(this));
-		Trial.getNewTrial();
-		Intent i = new Intent(this, TrialRunActivity.class);
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
-		
-		startActivityForResult(i,ButtonClickActivity_ID);
-	}
-	
-	public void onStartButtonClick(View v) {
-		Intent i = new Intent(this, EditDefaultActivityNew.class);
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
-		startActivityForResult(i, ButtonClickActivity_ID);;
-	}
-	
-	public void onViewButtonClick(View v) {
-		Intent i = new Intent(this, ViewActivity.class);
-		startActivityForResult(i, ButtonClickActivity_ID);
-	}
-	
-	public void onEditButtonClick(View v) {
+	public void onStartTrialClick(View v) {
 		Intent i = new Intent(this, confirmSettings.class);
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
@@ -66,7 +42,7 @@ public class LauncherActivity extends Activity {
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
-	public void onEditDefaultButtonClick(View v) {
+	public void onSettingsButtonClick(View v) {
 		Intent i = new Intent(this, EditDefaultActivityNew.class); 
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
@@ -74,18 +50,12 @@ public class LauncherActivity extends Activity {
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
-	public void onExitButtonClick (View v) {
-		finish();
-        System.exit(1);
-	}
-	
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
 		Log.e("Loading method", "onActivityResult...");
 		super.onActivityResult(requestCode, resultCode, data);
 	    if (data==null)
 	    {
-	    	Log.e("Loading Activity", "nulls datas...");
 	    	if (bw==null) bw = new BloodWheel();
 	    }
 	    else if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
@@ -93,6 +63,16 @@ public class LauncherActivity extends Activity {
 		    bw.Benign=data.getExtras().getInt("Benign");
 		    bw.Malignant=data.getExtras().getInt("Malignant");;
 	  	}
+	}
+	
+	@Override
+	public void finish(){//If back on phone pressed, store data for next intent
+		Intent i = new Intent();
+		i.putExtra("Benign", bw.Benign);
+		i.putExtra("Control", bw.Control);  
+		i.putExtra("Malignant", bw.Malignant); 
+		setResult(Activity.RESULT_OK, i);
+		super.finish();
 	}
 
 	@Override

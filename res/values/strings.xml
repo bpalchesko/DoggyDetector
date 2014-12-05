@@ -62,6 +62,13 @@
         <string name="dog_">Dog:</string>
         <string name="tester_">Tester:</string>
         <string name="begin">Begin</string>
+        <string name="whiteSpaceFiller">"   "</string>
+        <string name="tester">Tester:</string>
+        <string name="humidity">Humidity:</string>
+        <string name="handler">Handler:</string>
+        <string name="recorder">Recorder:</string>
+        <string name="temp">Temp:</string>
+        <string name="change_settings">Change Settings</string>
   
     
 </resources>

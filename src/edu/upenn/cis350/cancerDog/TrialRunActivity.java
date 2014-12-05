@@ -1,15 +1,10 @@
 package edu.upenn.cis350.cancerDog;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.GsonBuilder;
 
@@ -20,7 +15,6 @@ import com.google.gson.GsonBuilder;
 import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.app.DialogFragment;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -97,13 +91,6 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	static String notes = "";
 	static ArrayList<String> trialNotes = new ArrayList<String>();
 
-
-
-	
-    
-    public void calculate(){
-
-    }
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,15 +115,11 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 		      bw.Control=data.getExtras().getInt("Control");
 		      bw.Benign=data.getExtras().getInt("Benign");
 		      bw.Malignant=data.getExtras().getInt("Malignant");
-		}
-		else
-		{
-			Log.e("Loading Activity", "bw data not passed to activity");
+		} else {
+			Log.e("data", "data not received");
 			bw = new BloodWheel();
 		}
-        
-
-        
+ 
     	SharedPreferences preferences = getSharedPreferences(
     			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
     	currentHandler = preferences.getString("current", "DEFAULT");
@@ -148,50 +131,37 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 		
         etDog.setText(currentDog);
 
-        
-		
-
-        btntrailPass1.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btntrailPass1.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	  String editTextStr = edText.getText().toString() + " " + btn1Text;
         	  edText.setText(editTextStr);
           }
         });
         
-        btntrailPass2.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btntrailPass2.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	  String editTextStr = edText.getText().toString() + " " + btn2Text;
         	  edText.setText(editTextStr);
           }
         });
         
-        btntrailPass3.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btntrailPass3.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	  String editTextStr = edText.getText().toString() + " " + btn3Text;
         	  edText.setText(editTextStr);
           }
         });
         
         
-        btnleave.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btnleave.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	  String editTextStr = edText.getText().toString() + "  L";
         	  edText.setText(editTextStr);
           }
         });
         
-        btnBack.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btnBack.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	  if (edText.getText().toString().length()>=3)
         	  {
         		  String editTextStr = edText.getText().toString().substring(0, edText.getText().toString().length()-3);
@@ -201,19 +171,15 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
           }
         });
         
-        btnSave.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btnSave.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	  showNoticeDialog();
         	  
           }
         });
 
-        btnNext.setOnClickListener(new OnClickListener()
-        {
-          public void onClick(View v)
-          {
+        btnNext.setOnClickListener(new OnClickListener(){
+          public void onClick(View v){
         	 results.add(edText.getText().toString());
         	 edText.setText("");
         	 counter++;
@@ -225,7 +191,6 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         
         
         edText.setOnTouchListener(new OnTouchListener(){
-
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				// TODO Auto-generated method stub
@@ -286,16 +251,6 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 		if (notes!="")
 			i.putExtra("Notes", notes);
 		startActivityForResult(i,1);
-	}
-	
-	@Override
-	public void finish(){
-		Intent i = new Intent();
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
-		setResult(Activity.RESULT_OK, i);
-		super.finish();
 	}
 	
 	private void styleButtons(){
@@ -530,8 +485,6 @@ protected Void doInBackground(HashMap<String, Object>... arg0) {
 
 @Override
 protected void onPreExecute(){
-
-	
 }
 
 
@@ -554,6 +507,17 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     else if (data.hasExtra("Notes")) {
     	notes=data.getExtras().getString("Notes");
   	}
+}// end func
+
+@Override
+public void finish(){
+	Intent i = new Intent();
+	i.putExtra("Benign", bw.Benign);
+	i.putExtra("Control", bw.Control);  
+	i.putExtra("Malignant", bw.Malignant); 
+	i.putExtra("Notes",notes);
+	setResult(Activity.RESULT_OK, i);
+	super.finish();
 }
 	
 }

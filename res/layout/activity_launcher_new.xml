@@ -31,7 +31,7 @@
         android:textSize="75sp" />
 
     <Button
-        android:id="@+id/ConfirmSettings"
+        android:id="@+id/startTrial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
@@ -40,31 +40,13 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="150dp"
         android:background="#D6D6D6"
-        android:onClick="onEditButtonClick"
+        android:onClick="onStartTrialClick"
         android:text="@string/start_trial"
         android:textColor="#000000"
         android:textColorHint="#000000"
         android:textSize="50sp"
         android:textStyle="normal"
         android:typeface="normal" />
-<!-- 
-    <Button
-        android:id="@+id/ViewHistoryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:background="#D6D6D6"
-        android:onClick="onViewButtonClick"
-        android:text="@string/view_history"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="50sp"
-        android:textStyle="normal"
-        android:typeface="normal" /> -->
 
     <Button
         android:id="@+id/SettingsButton"
@@ -76,7 +58,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="50dp"
         android:background="#D6D6D6"
-        android:onClick="onEditDefaultButtonClick"
+        android:onClick="onSettingsButtonClick"
         android:text="@string/settings"
         android:textColor="#000000"
         android:textColorHint="#000000"
