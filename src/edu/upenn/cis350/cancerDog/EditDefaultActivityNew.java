@@ -36,10 +36,13 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	
 	private static final String PERSONNEL_FILE = "edu.upenn.cis350.cancerDog.handlers";
 	private static final String DOG_FILE = "edu.upenn.cis350.cancerDog.dogs";
+	private static final String CONDITIONS_FILE = "edu.upenn.cis350.cancerDog.conditions";
 	private SharedPreferences personnelSettings;
 	private SharedPreferences dogSettings;
+	private SharedPreferences conditionsSettings;
 	private SharedPreferences.Editor personnelEditor; 
 	private SharedPreferences.Editor dogEditor; 
+	private SharedPreferences.Editor conditionsEditor;
 	
 	private ArrayAdapter<String> dogAdapter;
 	private ArrayAdapter<CharSequence> handlerAdapter;
@@ -63,9 +66,12 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		Intent data = (Intent) getIntent();	
 		dogSettings = getSharedPreferences(DOG_FILE, Context.MODE_PRIVATE);	
 		personnelSettings = getSharedPreferences(PERSONNEL_FILE, Context.MODE_PRIVATE);
-		dogEditor = dogSettings.edit(); //TODO move
-		personnelEditor = personnelSettings.edit(); //TODO move
-		initializeSettings();
+		conditionsSettings = getSharedPreferences(CONDITIONS_FILE, Context.MODE_PRIVATE);
+		dogEditor = dogSettings.edit();
+		personnelEditor = personnelSettings.edit();
+		conditionsEditor = conditionsSettings.edit();
+		tempText = (EditText) findViewById(R.id.tempText);
+		humidityText = (EditText) findViewById(R.id.humidityText);
 		getSavedSettings();		
 		
 		if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
@@ -174,8 +180,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 					public void onNothingSelected(AdapterView<?> parentView) {}
 				});
 		
-		tempText = (EditText) findViewById(R.id.tempText);
-		humidityText = (EditText) findViewById(R.id.humidityText);
+
 		
 	}
 
@@ -216,7 +221,10 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		return false;
 	}
 
-	// this is shown as a default on the spinner for the edit default screen
+
+	/**
+	 * Loads spinner options initially and when user edits lists
+	 */
 	public void refreshAdapters() {
 		dogAdapter.clear();
 		handlerAdapter.clear();
@@ -236,7 +244,11 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		recorderAdapter.add("Edit List");
 	}
 
-	//Set spinners to current selection, or first element if selection was deleted
+	/**
+	 * Set spinners to current selection, or first element if selection was deleted
+	 * @param category i.e. dog, handler, tester, or recorder
+	 * @return index of currently selected value
+	 */
 	public int findCurrentValue(String value) {
 		if("dog".equals(value)) {
 			return Math.max(dogs.indexOf(currentDog), 0);
@@ -250,6 +262,11 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		return 0;
 	}
 		
+	/**
+	 * Creates the dialog box to edit spinner options
+	 * @param category i.e. dog, handler, tester, or recorder
+	 * @return dialog box
+	 */
 	public AlertDialog.Builder createEditDialog(final String category) {
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		final EditText input = new EditText(this);
@@ -280,34 +297,42 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 			}
 		});
 	
-		dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			  public void onClick(DialogInterface dialog, int whichButton) {
-			    // Canceled.
-			  }
-		});
+		dialog.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						dogSpinner.setSelection(findCurrentValue("dog"));
+						handlerSpinner.setSelection(findCurrentValue("handler"));
+						testerSpinner.setSelection(findCurrentValue("tester"));
+						recorderSpinner.setSelection(findCurrentValue("recorder"));
+					}
+				});
 		return dialog;
 	}
 	
-	
-	// when the default spinner is clicked, this is called to get the
-	// information in the spinner
+	/**
+	 * Gets spinner options from saved preferences
+	 * @param group i.e. dog, handlers
+	 * @return list of options
+	 */
 	public ArrayList<String> getGroup(String group) {
 		String names = "";
 		if ("dogs".equals(group)) {
+			String defaultDogs = "Tsunami, Ffoster, McBaine, Ohlin";			
 			SharedPreferences settings = getSharedPreferences(
 					DOG_FILE, Context.MODE_PRIVATE);
-			names = settings.getString("dogs", "EMPTY");
+			names = settings.getString("dogs", defaultDogs);
 		} else if ("handlers".equals(group)) {
+			String defaultPersonnel = "Annemarie D, Jonathan B, Ken V, Sun, Lorenzo R";
 			SharedPreferences settings = getSharedPreferences(
 					PERSONNEL_FILE, Context.MODE_PRIVATE);
-			names = settings.getString("handlers", "EMPTY");
-		}
-		if("EMPTY".equals(names)) {
-			return new ArrayList<String>();
+			names = settings.getString("handlers", defaultPersonnel);
 		}
 		return listFromNameString(names);
 	}
 	
+	/**
+	 * Sets variables and text fields for spinner options and current selections
+	 */
 	public void getSavedSettings(){
 		dogs = getGroup("dogs");
 		personnel= getGroup("handlers");
@@ -315,8 +340,13 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		currentHandler = personnelSettings.getString("current_handler", "");
 		currentTester = personnelSettings.getString("current_tester", "");
 		currentRecorder = personnelSettings.getString("current_recorder", "");
+		tempText.setText(conditionsSettings.getString("temp","0"));
+		humidityText.setText(conditionsSettings.getString("humidity","0"));
 	}
 	
+	/**
+	 * Saves spinner options and current selections to shared preferences
+	 */
 	public void saveCurrentSettings() {
 		dogEditor.putString("current", currentDog);
 		dogEditor.putString("dogs", nameStringFromList(dogs));
@@ -326,9 +356,16 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		personnelEditor.putString("current_recorder", currentRecorder);
 		personnelEditor.putString("handlers", nameStringFromList(personnel));
 		personnelEditor.commit();
-		
+		conditionsEditor.putString("temp", tempText.getText().toString());
+		conditionsEditor.putString("humidity", humidityText.getText().toString());	
+		conditionsEditor.commit();
 	}
 	
+	/**
+	 * Converts comma-separated string of names to list (for spinners)
+	 * @param comma-separated string of names
+	 * @return list of names
+	 */
 	public static ArrayList<String> listFromNameString(String names) {
 		ArrayList<String> temp = new ArrayList<String>();
 		names = names.trim();
@@ -340,6 +377,12 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		return temp;
 	}
 	
+	/**
+	 * Converts list of names to comma-separated string (for saving to
+	 * shared preferences)
+	 * @param list of names
+	 * @return comma-separated string of names
+	 */
 	public static String nameStringFromList(ArrayList<String> names) {
 		String temp = "";
 		for(int i = 0; i < names.size() - 1; i++) {
@@ -349,7 +392,10 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		return temp;
 	}
 	
-	// when the back button is clicked, this method is called
+	/**
+	 * Action when back button is clicked
+	 * @param v
+	 */
 	public void onPreviousButtonClick(View v) {
 		finish();
 		System.exit(0);
@@ -367,16 +413,5 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		saveCurrentSettings();
 		setResult(Activity.RESULT_OK, i);
 		super.finish();
-	}
-	
-	private void initializeSettings() {
-		String handlers = personnelSettings.getString("handlers", "EMPTY");
-		if("EMPTY".equals(handlers)) {
-			personnelEditor.putString("handlers", "Annemarie D, Jonathan B, Ken V, Sun, Lorenzo R");
-		}
-		String dogs = dogSettings.getString("dogs", "EMPTY");
-		if("EMPTY".equals(dogs)) {
-			dogEditor.putString("dogs", "Tsunami, Ffoster, McBaine, Ohlin");
-		}
 	}
 }
