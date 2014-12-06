@@ -83,51 +83,15 @@
             android:textColor="#000000"
             android:textSize="35sp" />
 
-        <TextView
-            android:id="@+id/DefaultTesterText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="150dp"
-            android:layout_row="0"
-            android:text="@string/default_tester"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="35sp" />
+        
 
-        <TextView
-            android:id="@+id/Dogs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="500dp"
-            android:layout_row="0"
-            android:text="@string/dogs_"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#000000"
-            android:textSize="35sp" />
-
-        <NumberPicker
-            android:id="@+id/settingsControlNumberPicker"
-            style="@style/AppBaseTheme"
-            android:layout_width="50dp"
-            android:layout_column="0"
-            android:layout_gravity="start|top"
-            android:layout_marginLeft="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="225dp"
-            android:layout_row="0" />
+        
 
         <NumberPicker
             android:id="@+id/settingsBenignNumberPicker"
             style="@style/AppBaseTheme"
             android:layout_width="50dp"
+            android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_gravity="start|top"
             android:layout_marginLeft="250dp"
@@ -135,10 +99,25 @@
             android:layout_marginTop="225dp"
             android:layout_row="0" />
         
-        <NumberPicker
+        <TextView
+            android:id="@+id/Dogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="350dp"
+            android:layout_row="0"
+            android:text="Dog:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000000"
+            android:textSize="35sp" />
+<NumberPicker
             android:id="@+id/settingsMalignantNumberPicker"
             style="@style/AppBaseTheme"
             android:layout_width="50dp"
+            android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_gravity="start|top"
             android:layout_marginLeft="450dp"
@@ -146,31 +125,173 @@
             android:layout_marginTop="225dp"
             android:layout_row="0" />
 
-        <Spinner
-            android:id="@+id/handlerSpinner1"
-            android:layout_width="match_parent"
-            android:layout_column="0"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginEnd="25dp"
-            android:layout_marginLeft="275dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginStart="275dp"
-            android:layout_marginTop="150dp"
-            android:layout_row="0"
-            android:entries="@array/handlers" />
+        <NumberPicker android:id="@+id/settingsControlNumberPicker" style="@style/AppBaseTheme" android:layout_width="50dp" android:layout_height="wrap_content" android:layout_column="0" android:layout_gravity="start|top" android:layout_marginLeft="50dp" android:layout_marginStart="50dp" android:layout_marginTop="225dp" android:layout_row="0" /><Spinner
+        android:id="@+id/dogSpinner1"
+        style="@style/AppBaseTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_gravity="center"
+        android:layout_marginEnd="25dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="350dp"
+        android:layout_row="0"
+        android:textColor="@android:color/black" />
 
-        <Spinner
-            android:id="@+id/dogSpinner1"
-            style="@style/AppBaseTheme"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_column="0"
-            android:layout_gravity="center"
-            android:layout_marginEnd="25dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="500dp"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="375dp"
             android:layout_row="0"
-            android:textColor="@android:color/black" />
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/DefaultTesterText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/tester_"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/handler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="25dp"
+                android:text="Handler:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/recorder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="25dp"
+                android:text="Recorder:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="35sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="450dp"
+            android:layout_row="0" >
+
+            <Spinner
+                android:id="@+id/testerSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:entries="@array/handlers" />
+
+            <Spinner
+                android:id="@+id/handlerSpinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:entries="@array/handlers" />
+
+            <Spinner
+                android:id="@+id/recorderSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:entries="@array/handlers" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_marginTop="675dp"
+            android:layout_row="0"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:text="Temp:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="35sp" />
+
+            <EditText
+                android:id="@+id/tempText"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:textColor="#000000" >
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="F       "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
+                android:text="Humidity:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textSize="35sp" />
+
+            <EditText
+                android:id="@+id/humidityText"
+                android:layout_width="122dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000" />
+
+        </LinearLayout>
 
 </GridLayout>
 
