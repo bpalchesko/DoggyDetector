@@ -1,10 +1,13 @@
 package edu.upenn.cis350.cancerDog;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class confirmSettings extends Activity{
@@ -12,6 +15,18 @@ public class confirmSettings extends Activity{
 	TextView BenignNum;
 	TextView ControlNum;
 	TextView MalignantNum;
+	TextView dogName;
+	TextView temperature;
+	TextView humidity;
+	TextView handler;
+	TextView tester;
+	TextView recorder;
+	private static String currentDog;
+	private static String currentTemp;
+	private static String currentHumidity;
+	private static String currentHandler;
+	private static String currentTester;
+	private static String currentRecorder;
 
 	public static final int ButtonClickActivity_ID = 1;
 
@@ -43,6 +58,48 @@ public class confirmSettings extends Activity{
 			bw = new BloodWheel();
 			Log.e("data", "data not received");
 		}
+		
+		//get dog from settings screen to confirm settings
+		SharedPreferences preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.dogs", Context.MODE_PRIVATE);
+    	currentDog = preferences.getString("current", "DEFAULT");
+    	dogName = (TextView) findViewById(R.id.dogName);
+    	dogName.setText(currentDog);
+
+		//get temp from settings screen to confirm settings
+    	preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.conditions", Context.MODE_PRIVATE);
+    	currentTemp =preferences.getString("temp", "DEFAULT");
+    	temperature = (TextView) findViewById(R.id.tempDeg);
+    	temperature.setText(currentTemp + " F");
+    	
+		//get humidity from settings screen to confirm settings
+    	preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.conditions", Context.MODE_PRIVATE);
+    	currentHumidity =preferences.getString("humidity", "DEFAULT");
+    	humidity = (TextView) findViewById(R.id.HumidPercent);
+    	humidity.setText(currentHumidity + " %");
+    	
+		//get current tester from settings screen to confirm settings
+    	preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
+    	currentTester =preferences.getString("current_tester", "DEFAULT");
+    	tester = (TextView) findViewById(R.id.TesterName);
+    	tester.setText(currentTester);
+    	
+		//get current handler from settings screen to confirm settings
+    	preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
+    	currentHandler =preferences.getString("current_handler", "DEFAULT");
+    	handler = (TextView) findViewById(R.id.HandlerName);
+    	handler.setText(currentHandler);
+    	
+		//get current recorder from settings screen to confirm settings
+    	preferences = getSharedPreferences(
+    			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
+    	currentRecorder =preferences.getString("current_recorder", "DEFAULT");
+    	recorder = (TextView) findViewById(R.id.RecorderName);
+    	recorder.setText(currentRecorder);
 	}
 	
 	public void onPreviousButtonClick(View v) {
@@ -98,6 +155,13 @@ public class confirmSettings extends Activity{
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant); 
 		startActivityForResult(i, ButtonClickActivity_ID);
+	}
+	
+	@Override
+	public void onRestart(){
+	    super.onRestart();
+	    Bundle savedInstanceState = null;
+		this.onCreate(savedInstanceState);
 	}
 	
 }
