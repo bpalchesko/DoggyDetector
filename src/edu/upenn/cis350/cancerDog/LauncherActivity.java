@@ -52,7 +52,8 @@ public class LauncherActivity extends Activity {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
-		Log.e("Loading method", "onActivityResult...");
+		Log.e("re-Loading method", "onActivityResult...");
+		Log.e("receiving data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		super.onActivityResult(requestCode, resultCode, data);
 	    if (data==null)
 	    {
@@ -62,6 +63,8 @@ public class LauncherActivity extends Activity {
 	    	bw.Control=data.getExtras().getInt("Control");
 		    bw.Benign=data.getExtras().getInt("Benign");
 		    bw.Malignant=data.getExtras().getInt("Malignant");;
+		    
+		    Log.e("re-receiving data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 	  	}
 	}
 	
@@ -71,6 +74,7 @@ public class LauncherActivity extends Activity {
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant); 
+		Log.e("sending data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		setResult(Activity.RESULT_OK, i);
 		super.finish();
 	}

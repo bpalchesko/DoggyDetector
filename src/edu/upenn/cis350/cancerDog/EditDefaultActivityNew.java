@@ -410,6 +410,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant);
+		Log.e("sending data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		saveCurrentSettings();
 		setResult(Activity.RESULT_OK, i);
 		super.finish();

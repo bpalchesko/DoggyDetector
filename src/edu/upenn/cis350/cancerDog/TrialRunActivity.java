@@ -110,6 +110,15 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         etNumber = (TextView) findViewById(R.id.NumberText);
         etDog = (TextView) findViewById(R.id.DogTextName);
         Intent data = (Intent) getIntent();
+        
+        if (data.hasExtra("Notes")) {
+        	notes=data.getExtras().getString("Notes");
+      	}
+        
+        if (data.hasExtra("EditText")) {
+        	 edText.setText(data.getExtras().getString("EditText"));
+      	}
+        
         if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
 		      bw = new BloodWheel();
 		      bw.Control=data.getExtras().getInt("Control");
@@ -499,14 +508,21 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     {
     	Log.e("Loading Activity", "nulls datas...");
     }
-    else if (data.hasExtra("Stop")) {
+    
+    if (data.hasExtra("Stop")) {
     	int stop = data.getExtras().getInt("Stop");
     	 String editTextStr = edText.getText().toString() + " S" + stop;
    	  edText.setText(editTextStr);
   	}
-    else if (data.hasExtra("Notes")) {
+    
+    if (data.hasExtra("Notes")) {
     	notes=data.getExtras().getString("Notes");
   	}
+    
+    if (data.hasExtra("EditText")) {
+    	 edText.setText(data.getExtras().getString("EditText"));
+  	}
+    
 }// end func
 
 @Override
@@ -516,6 +532,9 @@ public void finish(){
 	i.putExtra("Control", bw.Control);  
 	i.putExtra("Malignant", bw.Malignant); 
 	i.putExtra("Notes",notes);
+
+	if (edText.getText().toString()!="")
+		i.putExtra("EditText", edText.getText().toString());
 	setResult(Activity.RESULT_OK, i);
 	super.finish();
 }
