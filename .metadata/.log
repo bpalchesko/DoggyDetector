@@ -546,6 +546,7 @@ org.eclipse.core.internal.resources.ResourceException: Invalid project descripti
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
 Contains: OK
 Contains: /Users/09woepsea/UPENN/Software Engineering/DoggyDetector overlaps the workspace location: /Users/09woepsea/UPENN/Software Engineering/DoggyDetector
+<<<<<<< HEAD
 
 !ENTRY org.eclipse.core.resources 4 2 2014-12-04 17:35:04.393
 !MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
@@ -761,3 +762,5 @@ java.lang.IllegalStateException: Registry Directory not available: /Users/09woep
 	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1110)
 	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+=======
+>>>>>>> 79687e17080949325dfd9de5d4be757e877a0dde

@@ -1,5 +1,8 @@
 INDEX VERSION 1.127+/Users/09woepsea/UPENN/Software Engineering/DoggyDetector/.metadata/.plugins/org.eclipse.jdt.core
+<<<<<<< HEAD
 3435298984.index
 1288663406.index
 2783844842.index
 2675456084.index
+=======
+>>>>>>> 79687e17080949325dfd9de5d4be757e877a0dde
