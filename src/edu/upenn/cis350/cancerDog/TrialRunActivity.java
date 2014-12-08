@@ -256,35 +256,81 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	
 	public void onNotesClick (View v) {
 		Intent i = new Intent(this, NotesActivity.class); 
-		Log.e("NOTES", notes);
 		if (notes!="")
 			i.putExtra("Notes", notes);
 		startActivityForResult(i,1);
 	}
 	
 	private void styleButtons(){
+		if (bw.Malignant==0){
+			btn1Text="";
+			setButtonStyle(btntrailPass1,bw.Malignant,"Empty");
+			if (bw.Control<=bw.Benign){
+				setButtonStyle(btntrailPass2,bw.Control,"Control");
+				setButtonStyle(btntrailPass3,bw.Benign,"Benign");
+				btn2Text="P" + bw.Control;
+				btn3Text="P" + bw.Benign;
+			}else{
+				setButtonStyle(btntrailPass3,bw.Control,"Control");
+				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
+				btn3Text="P" + bw.Control;
+				btn2Text="P" + bw.Benign;
+			}
+			return;
+		}
+		
+		if (bw.Control==0){
+			btn1Text="";
+			setButtonStyle(btntrailPass1,bw.Control,"Empty");
+			btn1Text="";
+			if (bw.Malignant<=bw.Benign){
+				setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
+				setButtonStyle(btntrailPass3,bw.Benign,"Benign");
+				btn2Text="P" + bw.Malignant;
+				btn3Text="P" + bw.Benign;
+			}else{
+				setButtonStyle(btntrailPass3,bw.Malignant,"Malignant");
+				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
+				btn3Text="P" + bw.Malignant;
+				btn2Text="P" + bw.Benign;
+			}
+			return;
+		}
+		
+		if (bw.Benign==0){
+			btn1Text="";
+			setButtonStyle(btntrailPass1,bw.Benign,"Empty");
+			if (bw.Malignant<=bw.Control){
+				setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
+				setButtonStyle(btntrailPass3,bw.Control,"Control");
+				btn2Text="P" + bw.Malignant;
+				btn3Text="P" + bw.Control;
+			}else{
+				setButtonStyle(btntrailPass3,bw.Malignant,"Malignant");
+				setButtonStyle(btntrailPass2,bw.Control,"Control");
+				btn3Text="P" + bw.Control;
+				btn2Text="P" + bw.Malignant;
+			}
+			return;
+		}
+		
 		
 		if (bw.Benign<bw.Control){
 			if (bw.Benign<bw.Malignant){
 				setButtonStyle(btntrailPass1,bw.Benign,"Benign");
 				btn1Text="P" + bw.Benign;
-				if (bw.Control<bw.Malignant)
-				{
+				if (bw.Control<bw.Malignant){
 					setButtonStyle(btntrailPass2,bw.Control,"Control");
 					setButtonStyle(btntrailPass3,bw.Malignant,"Malignant");
 					btn2Text="P" + bw.Control;
 					btn3Text="P" + bw.Malignant;
-				}
-				else
-				{
+				}else{
 					setButtonStyle(btntrailPass3,bw.Control,"Control");
 					setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
 					btn3Text="P" + bw.Control;
 					btn2Text="P" + bw.Malignant;
 				}
-			}
-			else
-			{
+			}else{
 				setButtonStyle(btntrailPass1,bw.Malignant,"Malignant");
 				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
 				setButtonStyle(btntrailPass3,bw.Control,"Control");
@@ -293,27 +339,21 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 				btn3Text="P" + bw.Control;
 			}
 		}
-		else if(bw.Control<bw.Malignant)
-		{
+		else if(bw.Control<bw.Malignant){
 			setButtonStyle(btntrailPass1,bw.Control,"Control");
 			btn1Text="P" + bw.Control;
-			if (bw.Benign<bw.Malignant)
-			{
+			if (bw.Benign<bw.Malignant){
 				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
 				setButtonStyle(btntrailPass3,bw.Malignant,"Malignant");
 				btn2Text="P" + bw.Benign;
 				btn3Text="P" + bw.Malignant;
-			}
-			else
-			{
+			}else{
 				setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
 				setButtonStyle(btntrailPass3,bw.Benign,"Benign");
 				btn2Text="P" + bw.Malignant;
 				btn3Text="P" + bw.Benign;
 			}
-		}
-		else
-		{
+		}else{
 			setButtonStyle(btntrailPass1,bw.Malignant,"Malignant");
 			setButtonStyle(btntrailPass2,bw.Control,"Control");
 			setButtonStyle(btntrailPass3,bw.Benign,"Benign");
@@ -321,11 +361,16 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 			btn2Text="P" + bw.Control;
 			btn3Text="P" + bw.Benign;
 		}
+		
+		
 	}//styleButtons
 	
-	private void setButtonStyle(ImageButton button, int buttonValue, String Style)
-	{
-		
+	private void setButtonStyle(ImageButton button, int buttonValue, String Style){
+		if (Style=="Empty"){
+			button.setVisibility(100);
+			return;
+		}
+
 		switch (buttonValue){
 		case 1:
 			if (Style.equals("Control"))
@@ -430,7 +475,6 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	AsyncTask<HashMap<String, Object>, Void, Void> {
 
 public void postData() {
-	
 	String fullUrl = "https://docs.google.com/forms/d/19Nh83jx9ogs4urOVIeRnC3bpBG4IOd26A8J1-NJxhu4/formResponse";
 	HttpRequest mReq = new HttpRequest();
 	String trialResults = "";
@@ -481,62 +525,57 @@ public void postData() {
 
 } 
 
-@Override
-protected Void doInBackground(HashMap<String, Object>... arg0) {
-	String json = new GsonBuilder().create().toJson(arg0[0], Map.class);
-	try {
-		postData();
-	} catch (Exception e) {
-		e.printStackTrace();
-	} 
-	return null; 		
+	@Override
+	protected Void doInBackground(HashMap<String, Object>... arg0) {
+		String json = new GsonBuilder().create().toJson(arg0[0], Map.class);
+		try {
+			postData();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return null; 		
+		}
+	
+		@Override
+		protected void onPreExecute(){
+		}
 	}
 
-@Override
-protected void onPreExecute(){
-}
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+	    if (data==null){
+	    	Log.e("Loading Activity", "nulls datas...");
+	    }
+	    
+	    if (data.hasExtra("Stop")) {
+	    	int stop = data.getExtras().getInt("Stop");
+	    	 String editTextStr = edText.getText().toString() + " S" + stop;
+	   	  edText.setText(editTextStr);
+	  	}
+	    
+	    if (data.hasExtra("Notes")) {
+	    	notes=data.getExtras().getString("Notes");
+	  	}
+	    
+	    if (data.hasExtra("EditText")) {
+	    	 edText.setText(data.getExtras().getString("EditText"));
+	  	}
+	    
+	}// end func
 
-
-
-}
-
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	Log.e("Loading method", "onActivityResult...");
-	super.onActivityResult(requestCode, resultCode, data);
-    if (data==null)
-    {
-    	Log.e("Loading Activity", "nulls datas...");
-    }
-    
-    if (data.hasExtra("Stop")) {
-    	int stop = data.getExtras().getInt("Stop");
-    	 String editTextStr = edText.getText().toString() + " S" + stop;
-   	  edText.setText(editTextStr);
-  	}
-    
-    if (data.hasExtra("Notes")) {
-    	notes=data.getExtras().getString("Notes");
-  	}
-    
-    if (data.hasExtra("EditText")) {
-    	 edText.setText(data.getExtras().getString("EditText"));
-  	}
-    
-}// end func
-
-@Override
-public void finish(){
-	Intent i = new Intent();
-	i.putExtra("Benign", bw.Benign);
-	i.putExtra("Control", bw.Control);  
-	i.putExtra("Malignant", bw.Malignant); 
-	i.putExtra("Notes",notes);
-
-	if (edText.getText().toString()!="")
-		i.putExtra("EditText", edText.getText().toString());
-	setResult(Activity.RESULT_OK, i);
-	super.finish();
-}
+	@Override
+	public void finish(){
+		Intent i = new Intent();
+		i.putExtra("Benign", bw.Benign);
+		i.putExtra("Control", bw.Control);  
+		i.putExtra("Malignant", bw.Malignant); 
+		i.putExtra("Notes",notes);
+	
+		if (edText.getText().toString()!="")
+			i.putExtra("EditText", edText.getText().toString());
+		setResult(Activity.RESULT_OK, i);
+		super.finish();
+	}
 	
 }

@@ -16,7 +16,7 @@ public class LauncherActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launcher_new);
-		Log.e("Loading Activity", "LauncherActivity");
+		//Log.e("Loading Activity", "LauncherActivity");
 		Trial.context = this;
 		Trial.loadSessions();
 		
@@ -52,19 +52,14 @@ public class LauncherActivity extends Activity {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
-		Log.e("re-Loading method", "onActivityResult...");
-		Log.e("receiving data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		super.onActivityResult(requestCode, resultCode, data);
-	    if (data==null)
-	    {
+	    if (data==null){
 	    	if (bw==null) bw = new BloodWheel();
 	    }
 	    else if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
 	    	bw.Control=data.getExtras().getInt("Control");
 		    bw.Benign=data.getExtras().getInt("Benign");
 		    bw.Malignant=data.getExtras().getInt("Malignant");;
-		    
-		    Log.e("re-receiving data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 	  	}
 	}
 	
@@ -74,7 +69,6 @@ public class LauncherActivity extends Activity {
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant); 
-		Log.e("sending data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		setResult(Activity.RESULT_OK, i);
 		super.finish();
 	}

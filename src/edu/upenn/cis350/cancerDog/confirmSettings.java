@@ -36,7 +36,7 @@ public class confirmSettings extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm_settings);
-		Log.e("Loading Activity", "confirmSettings");
+		//Log.e("Loading Activity", "confirmSettings");
 		Trial.context = this;
 		Trial.loadSessions();
 		BenignNum = (TextView) findViewById(R.id.BenignNum);
@@ -111,7 +111,6 @@ public class confirmSettings extends Activity{
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
-		//Log.e("reloading activity:", "confirm settings");
 		super.onActivityResult(requestCode, resultCode, data);
 	    if (data==null)
 	    {
@@ -124,7 +123,6 @@ public class confirmSettings extends Activity{
 	    	bw.Control=data.getExtras().getInt("Control");
 		    bw.Benign=data.getExtras().getInt("Benign");
 		    bw.Malignant=data.getExtras().getInt("Malignant");
-		    //Log.e("reloading data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 	    	BenignNum.setText(Integer.valueOf(bw.Benign).toString());
 		    ControlNum.setText(Integer.valueOf(bw.Control).toString());
 		    MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());

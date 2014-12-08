@@ -62,7 +62,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	public void onCreate(Bundle savedInstanceState) {	
 	    super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editdefaults_new);
-		Log.e("Loading Activity", "EditDefaultActivityNew");
+		//Log.e("Loading Activity", "EditDefaultActivityNew");
 		Intent data = (Intent) getIntent();	
 		dogSettings = getSharedPreferences(DOG_FILE, Context.MODE_PRIVATE);	
 		personnelSettings = getSharedPreferences(PERSONNEL_FILE, Context.MODE_PRIVATE);
@@ -85,19 +85,19 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		}
 		      
 		settingsControlNumberPicker = (NumberPicker) findViewById(R.id.settingsControlNumberPicker);
-		settingsControlNumberPicker.setMinValue(1);
+		settingsControlNumberPicker.setMinValue(0);
 		settingsControlNumberPicker.setMaxValue(12);
 		settingsControlNumberPicker.setValue(bw.Control);
 		settingsControlNumberPicker.setOnValueChangedListener(this);
 		setNumberPickerTextColor(settingsControlNumberPicker, -16777216); //number for black		
 		settingsBenignNumberPicker = (NumberPicker) findViewById(R.id.settingsBenignNumberPicker);
-		settingsBenignNumberPicker.setMinValue(1);
+		settingsBenignNumberPicker.setMinValue(0);
 		settingsBenignNumberPicker.setMaxValue(12);
 		settingsBenignNumberPicker.setValue(bw.Benign);
 		settingsBenignNumberPicker.setOnValueChangedListener(this);
 		setNumberPickerTextColor(settingsBenignNumberPicker, -16777216); //number for black		
 		settingsMalignantNumberPicker = (NumberPicker) findViewById(R.id.settingsMalignantNumberPicker);
-		settingsMalignantNumberPicker.setMinValue(1);
+		settingsMalignantNumberPicker.setMinValue(0);
 		settingsMalignantNumberPicker.setMaxValue(12);
 		settingsMalignantNumberPicker.setValue(bw.Malignant);
 		settingsMalignantNumberPicker.setOnValueChangedListener(this);
@@ -410,7 +410,6 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant);
-		Log.e("sending data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		saveCurrentSettings();
 		setResult(Activity.RESULT_OK, i);
 		super.finish();
