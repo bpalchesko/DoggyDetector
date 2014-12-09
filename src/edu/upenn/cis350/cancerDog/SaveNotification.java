@@ -55,7 +55,7 @@ public class SaveNotification extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
 builder.setView(inflater.inflate(R.layout.save_notification, null))
-.setMessage("Are you sure")
+.setMessage("Are you sure you want to finish your set of trials? App will save data to spreadsheet now and will start from Trial 1")
         		.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
                        // Send the positive button event back to the host activity

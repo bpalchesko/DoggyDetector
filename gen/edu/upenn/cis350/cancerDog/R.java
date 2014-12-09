@@ -107,7 +107,7 @@ public final class R {
         public static final int StartTrialButton=0x7f090009;
         public static final int Tester=0x7f09004a;
         public static final int TesterName=0x7f09007d;
-        public static final int action_settings=0x7f090087;
+        public static final int action_settings=0x7f090086;
         public static final int benign=0x7f090077;
         public static final int button1=0x7f090024;
         public static final int button2=0x7f090025;
@@ -134,7 +134,6 @@ public final class R {
         public static final int exit=0x7f090021;
         public static final int experimentalLabel=0x7f09006a;
         public static final int experimentalSpinner=0x7f090006;
-        public static final int finishedNotes=0x7f090086;
         public static final int handler=0x7f090012;
         public static final int handlerSpinner=0x7f090002;
         public static final int handlerSpinner1=0x7f090015;

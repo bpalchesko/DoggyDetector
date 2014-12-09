@@ -50,8 +50,17 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	static BloodWheel bw;
 	private static String currentDog;
 	private static String currentHandler;
+	private static String currentRecorder;
+	private static String currentTester;
+	private static String currentTemp;
+	private static String currentHumidity;
 	private static final String FORM_URL = "https://docs.google.com/forms/d/1R8Oq1YvTVfrgxafxcGZaO6C_wca3Lv_JV3Su_MIEnaU/formResponse";
 	private static final String DOG_NAME = "entry_434753845=";
+	private static final String RECORDER = "entry_1725873612=";
+	private static final String HANDLER = "entry_1410932431=";
+	private static final String TESTER = "entry_270032351=";
+	private static final String TEMPERATURE = "entry_2068466040=";
+	private static final String HUMIDITY = "entry_2021874211=";
 	private static final String SUCCESS_RATE = "entry_1038306324=";
 	private static final String SENSITIVITY = "entry_1407605094=";
 	private static final String SPEC_NORMAL = "entry_494446774=";
@@ -64,10 +73,6 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 	private static final String TOTAL_FPE = "entry_1938978197=";
 	private static final String TOTAL_FN = "entry_1347207823=";
 	private static final String TOTAL_TP = "entry_918273940=";
-	private static final String NOTES = "entry_1907361889=";
-	private static final String TESTER = "entry_270032351=";
-	private static final String TEMPERATURE = "entry_2068466040=";
-	private static final String HUMIDITY = "entry_2021874211=";
 	private static final String[] TRIALS = new String[] {"entry_873369963=",
 		"entry_82683764=", "entry_403485159=", "entry_1585414345=", 
 		"entry_809017169=", "entry_14494942=", "entry_487964326=",
@@ -131,10 +136,21 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
  
     	SharedPreferences preferences = getSharedPreferences(
     			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
-    	currentHandler = preferences.getString("current", "DEFAULT");
+    	currentHandler = preferences.getString("current_handler", "Go to settings to set");
+    	currentRecorder = preferences.getString("current_recorder", "Go to settings to set");
+    	currentTester = preferences.getString("current_tester", "Go to settings to set");
+    	
+
     	preferences = getSharedPreferences(
     			"edu.upenn.cis350.cancerDog.dogs", Context.MODE_PRIVATE);
-    	currentDog = preferences.getString("current", "DEFAULT");
+    	currentDog = preferences.getString("current", "Go to settings to set");
+    	
+    	
+    	preferences = getSharedPreferences(
+    	"edu.upenn.cis350.cancerDog.conditions", Context.MODE_PRIVATE);
+    	
+    	currentTemp = preferences.getString("temp", "Go to settings to set");
+    	currentHumidity = preferences.getString("temp", "Go to settings to set");
 		
 		styleButtons();
 		
@@ -516,8 +532,11 @@ public void postData() {
 			SPEC_BENIGN  + URLEncoder.encode(specBen.toString()) + "&" +
 			SPEC_TOTAL  + URLEncoder.encode(specTot.toString()) + "&" +
 			SUCCESS_RATE + URLEncoder.encode(suc.toString()) + "&" +
-			
-				TESTER + URLEncoder.encode(currentHandler) + trialResults;
+			HANDLER + URLEncoder.encode(currentHandler) + "&" +
+			RECORDER + URLEncoder.encode(currentRecorder) + "&" +
+			TEMPERATURE + URLEncoder.encode(currentTemp) + "&" +
+			HUMIDITY + URLEncoder.encode(currentHumidity) + "&" +
+			TESTER + URLEncoder.encode(currentTester) + trialResults;
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
 	results.clear();
