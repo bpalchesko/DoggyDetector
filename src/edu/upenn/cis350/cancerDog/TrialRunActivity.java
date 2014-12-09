@@ -548,17 +548,17 @@ public void postData() {
 	    	Log.e("Loading Activity", "nulls datas...");
 	    }
 	    
-	    if (data.hasExtra("Stop")) {
+	    if (data != null && data.hasExtra("Stop")) {
 	    	int stop = data.getExtras().getInt("Stop");
 	    	 String editTextStr = edText.getText().toString() + " S" + stop;
 	   	  edText.setText(editTextStr);
 	  	}
 	    
-	    if (data.hasExtra("Notes")) {
+	    if (data != null && data.hasExtra("Notes")) {
 	    	notes=data.getExtras().getString("Notes");
 	  	}
 	    
-	    if (data.hasExtra("EditText")) {
+	    if (data != null && data.hasExtra("EditText")) {
 	    	 edText.setText(data.getExtras().getString("EditText"));
 	  	}
 	    
