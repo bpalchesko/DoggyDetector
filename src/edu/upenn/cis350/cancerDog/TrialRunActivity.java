@@ -266,15 +266,30 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 			btn1Text="";
 			setButtonStyle(btntrailPass1,bw.Malignant,"Empty");
 			if (bw.Control<=bw.Benign){
-				setButtonStyle(btntrailPass2,bw.Control,"Control");
-				setButtonStyle(btntrailPass3,bw.Benign,"Benign");
-				btn2Text="P" + bw.Control;
-				btn3Text="P" + bw.Benign;
+				if (bw.Control!=0){
+					setButtonStyle(btntrailPass2,bw.Control,"Control");
+					setButtonStyle(btntrailPass3,bw.Benign,"Benign");
+					btn2Text="P" + bw.Control;
+					btn3Text="P" + bw.Benign;
+				}
+				else
+				{
+					setButtonStyle(btntrailPass2,bw.Control,"Empty");
+					setButtonStyle(btntrailPass3,bw.Benign,"Benign");
+					btn3Text="P" + bw.Benign;
+				}
 			}else{
 				setButtonStyle(btntrailPass3,bw.Control,"Control");
-				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
 				btn3Text="P" + bw.Control;
-				btn2Text="P" + bw.Benign;
+				if (bw.Benign!=0){
+					setButtonStyle(btntrailPass2,bw.Benign,"Benign");
+					btn2Text="P" + bw.Benign;
+				}
+				else
+				{
+					setButtonStyle(btntrailPass2,bw.Benign,"Empty");
+
+				}
 			}
 			return;
 		}
@@ -284,16 +299,33 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 			setButtonStyle(btntrailPass1,bw.Control,"Empty");
 			btn1Text="";
 			if (bw.Malignant<=bw.Benign){
-				setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
 				setButtonStyle(btntrailPass3,bw.Benign,"Benign");
-				btn2Text="P" + bw.Malignant;
 				btn3Text="P" + bw.Benign;
+				
+				if (bw.Malignant!=0){
+					setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
+					btn2Text="P" + bw.Malignant;
+				}
+				else
+				{
+					setButtonStyle(btntrailPass2,bw.Malignant,"Empty");
+
+				}
 			}else{
 				setButtonStyle(btntrailPass3,bw.Malignant,"Malignant");
-				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
 				btn3Text="P" + bw.Malignant;
+				if (bw.Benign!=0){
+				setButtonStyle(btntrailPass2,bw.Benign,"Benign");
+				
 				btn2Text="P" + bw.Benign;
+				}
+				else
+				{
+					setButtonStyle(btntrailPass2,bw.Benign,"Empty");
+					
+				}
 			}
+			
 			return;
 		}
 		
@@ -301,15 +333,32 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
 			btn1Text="";
 			setButtonStyle(btntrailPass1,bw.Benign,"Empty");
 			if (bw.Malignant<=bw.Control){
-				setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
 				setButtonStyle(btntrailPass3,bw.Control,"Control");
-				btn2Text="P" + bw.Malignant;
 				btn3Text="P" + bw.Control;
+				if (bw.Malignant!=0){
+				setButtonStyle(btntrailPass2,bw.Malignant,"Malignant");
+
+				btn2Text="P" + bw.Malignant;
+
+				}
+				else
+				{
+					setButtonStyle(btntrailPass2,bw.Malignant,"Empty");
+				}
 			}else{
 				setButtonStyle(btntrailPass3,bw.Malignant,"Malignant");
+				btn3Text="P" + bw.Malignant;
+				
+				if (bw.Control!=0){
+
 				setButtonStyle(btntrailPass2,bw.Control,"Control");
-				btn3Text="P" + bw.Control;
-				btn2Text="P" + bw.Malignant;
+
+				btn2Text="P" + bw.Control;
+				}
+				else
+				{
+					setButtonStyle(btntrailPass2,bw.Control,"Empty");
+				}
 			}
 			return;
 		}
