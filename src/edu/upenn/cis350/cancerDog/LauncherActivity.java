@@ -16,9 +16,9 @@ public class LauncherActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launcher_new);
-		Log.e("Loading Activity", "LauncherActivity");
-		Trial.context = this;
-		Trial.loadSessions();
+		//Log.e("Loading Activity", "LauncherActivity");
+		//Trial.context = this;
+		//Trial.loadSessions();
 		
 		Intent data = (Intent) getIntent();
 		
@@ -52,10 +52,8 @@ public class LauncherActivity extends Activity {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
-		Log.e("Loading method", "onActivityResult...");
 		super.onActivityResult(requestCode, resultCode, data);
-	    if (data==null)
-	    {
+	    if (data==null){
 	    	if (bw==null) bw = new BloodWheel();
 	    }
 	    else if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
@@ -79,8 +77,8 @@ public class LauncherActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.launcher, menu);
-		Trial.context = this;
-		Trial.loadSessions();
+		//Trial.context = this;
+		//Trial.loadSessions();
 		return true;
 	}
 }

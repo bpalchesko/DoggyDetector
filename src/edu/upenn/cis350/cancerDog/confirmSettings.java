@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class confirmSettings extends Activity{
@@ -29,14 +28,15 @@ public class confirmSettings extends Activity{
 	private static String currentRecorder;
 
 	public static final int ButtonClickActivity_ID = 1;
+	
+	String notes="";
+	String edText="";
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm_settings);
-		Log.e("Loading Activity", "confirmSettings");
-		Trial.context = this;
-		Trial.loadSessions();
+		//Log.e("Loading Activity", "confirmSettings");
 		BenignNum = (TextView) findViewById(R.id.BenignNum);
 		ControlNum = (TextView) findViewById(R.id.ControlNum);
 		MalignantNum = (TextView) findViewById(R.id.MalignantNum);
@@ -45,13 +45,13 @@ public class confirmSettings extends Activity{
 		
 		if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
 		      bw = new BloodWheel();
+		      //Log.e("create data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		      bw.Control=data.getExtras().getInt("Control");
 		      bw.Benign=data.getExtras().getInt("Benign");
 		      bw.Malignant=data.getExtras().getInt("Malignant");
 		      BenignNum.setText(Integer.valueOf(bw.Benign).toString());
 		      ControlNum.setText(Integer.valueOf(bw.Control).toString());
 		      MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
-		      Log.e("on create data:", Integer.valueOf(bw.Malignant).toString() + " " + Integer.valueOf(bw.Benign).toString() + " ");
 		}
 		else
 		{
@@ -102,10 +102,10 @@ public class confirmSettings extends Activity{
     	recorder.setText(currentRecorder);
 	}
 	
-	public void onPreviousButtonClick(View v) {
-		finish();
-		System.exit(0);
-	}
+	//public void onPreviousButtonClick(View v) {
+	//	finish();
+	//	System.exit(0);
+	//}
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {//If back on phone pressed, retrieve data for intent
@@ -113,9 +113,6 @@ public class confirmSettings extends Activity{
 	    if (data==null)
 	    {
 	    	BenignNum.setText(Integer.valueOf(bw.Benign).toString());
-		    ControlNum.setText(Integer.valueOf(bw.Control).toString());
-		    MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
-		    BenignNum.setText(Integer.valueOf(bw.Benign).toString());
 		    ControlNum.setText(Integer.valueOf(bw.Control).toString());
 		    MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
 	    	Log.e("Loading Activity", "nulls datas...");
@@ -128,6 +125,14 @@ public class confirmSettings extends Activity{
 		    ControlNum.setText(Integer.valueOf(bw.Control).toString());
 		    MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
 	  	}
+	    
+	    if (data.hasExtra("Notes")) {
+        	notes=data.getExtras().getString("Notes");
+      	}
+        
+        if (data.hasExtra("EditText")) {
+        	 edText=data.getExtras().getString("EditText");
+      	}
 	}
 	
 	@Override
@@ -136,16 +141,30 @@ public class confirmSettings extends Activity{
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant); 
+		
+		if (notes!="")
+			i.putExtra("Notes",notes);
+
+		if (edText!="")
+			i.putExtra("EditText", edText);
+		
 		setResult(Activity.RESULT_OK, i);
 		super.finish();
 	}
 	
 	public void onConfirmButtonClick (View v) {
-		Trial.getNewTrial();
+		//Trial.getNewTrial();
 		Intent i = new Intent(this, TrialRunActivity.class);
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
 		i.putExtra("Malignant", bw.Malignant);
+		
+		if (notes!="")
+			i.putExtra("Notes",notes);
+
+		if (edText!="")
+			i.putExtra("EditText", edText);
+		
 		startActivityForResult(i,ButtonClickActivity_ID);
 	}
 	
@@ -153,15 +172,22 @@ public class confirmSettings extends Activity{
 		Intent i = new Intent(this, EditDefaultActivityNew.class); 
 		i.putExtra("Benign", bw.Benign);
 		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
+		i.putExtra("Malignant", bw.Malignant);
+		
+		if (notes!="")
+			i.putExtra("Notes",notes);
+
+		if (edText!="")
+			i.putExtra("EditText", edText);
+		
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
-	@Override
-	public void onRestart(){
-	    super.onRestart();
-	    Bundle savedInstanceState = null;
-		this.onCreate(savedInstanceState);
-	}
+	//@Override
+	//public void onRestart(){
+	//    super.onRestart();
+	//    Bundle savedInstanceState = null;
+	//	this.onCreate(savedInstanceState);
+	//}
 	
 }
