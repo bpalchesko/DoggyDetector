@@ -119,15 +119,8 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         	 edText.setText(data.getExtras().getString("EditText"));
       	}
         
-        if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
-		      bw = new BloodWheel();
-		      bw.Control=data.getExtras().getInt("Control");
-		      bw.Benign=data.getExtras().getInt("Benign");
-		      bw.Malignant=data.getExtras().getInt("Malignant");
-		} else {
-			Log.e("data", "data not received");
-			bw = new BloodWheel();
-		}
+        bw = new BloodWheel();
+		bw.setWheelData(data);
  
     	SharedPreferences preferences = getSharedPreferences(
     			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
@@ -616,9 +609,7 @@ public void postData() {
 	@Override
 	public void finish(){
 		Intent i = new Intent();
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
+		bw.pushIntentData(i);
 		i.putExtra("Notes",notes);
 	
 		if (edText.getText().toString()!="")
