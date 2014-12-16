@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class confirmSettings extends Activity{
@@ -64,6 +65,7 @@ public class confirmSettings extends Activity{
     	handler = (TextView) findViewById(R.id.HandlerName);
     	recorder = (TextView) findViewById(R.id.RecorderName);
     	setViews();
+        
 	}
 	
 	

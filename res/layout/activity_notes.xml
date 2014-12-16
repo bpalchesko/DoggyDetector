@@ -5,65 +5,75 @@
     android:background="#FFFFFF"
     android:orientation="vertical" >
     
-     <Button
-        android:id="@+id/ibSave"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:onClick="onFinishClick"
-        android:layout_gravity="right" 
-        android:background="#66CC00"
-        android:text="Return"
-        android:textColor="#000000"
-        android:textSize="30sp" />
+  
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onDogClick"
-		android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="30sp"
-        android:text="Dog" />
+     <LinearLayout
+         android:layout_width="300dp"
+         android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onTiredClick"
-		android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="30sp"
-        android:text="Tired" />
+         <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:orientation="vertical" >
+             
+                <Button
+                    android:id="@+id/ibSave"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="65dp"
+                    android:background="#66CC00"
+                    android:onClick="onFinishClick"
+                    android:text="Return to Trial"
+                    android:textColor="#000000"
+                    android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onSleepyClick"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="30sp"
-        android:text="Sleepy" />
+             <Button
+                 android:id="@+id/button1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:onClick="onDogClick"
+                 android:text="Dog"
+                 android:textColor="#000000"
+                 android:textColorHint="#000000"
+                 android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onHungryClick"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="30sp"
-        android:text="Hungry" />
+             <Button
+                 android:id="@+id/button2"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:onClick="onTiredClick"
+                 android:text="Tired"
+                 android:textColor="#000000"
+                 android:textColorHint="#000000"
+                 android:textSize="30sp" />
 
+             <Button
+                 android:id="@+id/button3"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:onClick="onSleepyClick"
+                 android:text="Sleepy"
+                 android:textColor="#000000"
+                 android:textColorHint="#000000"
+                 android:textSize="30sp" />
 
+             <Button
+                 android:id="@+id/button4"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:onClick="onHungryClick"
+                 android:text="Hungry"
+                 android:textColor="#000000"
+                 android:textColorHint="#000000"
+                 android:textSize="30sp" />
+         </LinearLayout>
+     </LinearLayout>
 
     <EditText
         android:id="@+id/editText1"
@@ -75,7 +85,5 @@
         android:inputType="textMultiLine">
         <requestFocus />
     </EditText>
-
-   
 
 </LinearLayout>

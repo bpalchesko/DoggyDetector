@@ -31,21 +31,25 @@ public class NotesActivity extends Activity {
 	public void onDogClick (View v) {
 		String editTextStr = edText.getText().toString() + "Dog"+ " ";
   	  	edText.setText(editTextStr);
+  	  	edText.setSelection(edText.length());
 	}
 	
 	public void onTiredClick (View v) {
 		String editTextStr = edText.getText().toString() + "Tired"+ " ";
   	  	edText.setText(editTextStr);
+  	  	edText.setSelection(edText.length());
 	}
 
 	public void onSleepyClick (View v) {
 		String editTextStr = edText.getText().toString() + "Sleepy"+ " ";
   	  	edText.setText(editTextStr);
+  	  	edText.setSelection(edText.length());
 	}
 	
 	public void onHungryClick (View v) {
 		String editTextStr = edText.getText().toString() + "Hungry"+ " ";
   	  	edText.setText(editTextStr);
+  	  	edText.setSelection(edText.length());
 	}
 
 	public void onFinishClick (View v) {

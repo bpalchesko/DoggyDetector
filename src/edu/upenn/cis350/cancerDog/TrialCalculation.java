@@ -28,7 +28,7 @@ public class TrialCalculation {
 		complete = true;
 	}
 
-	/**
+	/** 
 	 * Generates an encoded result sequence for a trial, and updates TNN, 
 	 * TNB, TP, FPN, FPB, FPE, and FN counters.
 	 * 
