@@ -1,5 +1,6 @@
 package edu.upenn.cis350.cancerDog;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -18,6 +19,22 @@ public class BloodWheel implements Parcelable {
 		    this.Control = in.readInt();
 		    this.Benign = in.readInt();
 		    this.Malignant = in.readInt();
+		}
+		
+		public void setWheelData(Intent data){
+			if (data==null)
+				return;
+			if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
+			      this.Control=data.getExtras().getInt("Control");
+			      this.Benign=data.getExtras().getInt("Benign");
+			      this.Malignant=data.getExtras().getInt("Malignant");
+			}
+		}
+		
+		public void pushIntentData(Intent i){
+			i.putExtra("Benign", this.Benign);
+			i.putExtra("Control", this.Control);  
+			i.putExtra("Malignant", this.Malignant); 
 		}
 		
 		@Override

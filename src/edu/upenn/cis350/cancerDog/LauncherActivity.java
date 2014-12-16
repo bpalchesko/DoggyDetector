@@ -3,7 +3,6 @@ package edu.upenn.cis350.cancerDog;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -18,31 +17,20 @@ public class LauncherActivity extends Activity {
 		setContentView(R.layout.activity_launcher_new);
 		Intent data = (Intent) getIntent();
 		
-		if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
-		      bw = new BloodWheel();
-		      bw.Control=data.getExtras().getInt("Control");
-		      bw.Benign=data.getExtras().getInt("Benign");
-		      bw.Malignant=data.getExtras().getInt("Malignant");
-		}
-		else
-		{
-			bw = new BloodWheel();
-		}
+
+		bw = new BloodWheel();
+		bw.setWheelData(data);
 	}
 	
 	public void onStartTrialClick(View v) {
 		Intent i = new Intent(this, confirmSettings.class);
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
+		bw.pushIntentData(i);
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
 	public void onSettingsButtonClick(View v) {
 		Intent i = new Intent(this, EditDefaultActivityNew.class); 
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
+		bw.pushIntentData(i);
 		startActivityForResult(i, ButtonClickActivity_ID);
 	}
 	
@@ -51,20 +39,15 @@ public class LauncherActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 	    if (data==null){
 	    	if (bw==null) bw = new BloodWheel();
-	    }
-	    else if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
-	    	bw.Control=data.getExtras().getInt("Control");
-		    bw.Benign=data.getExtras().getInt("Benign");
-		    bw.Malignant=data.getExtras().getInt("Malignant");;
+	    } else{ 
+	    	bw.setWheelData(data);
 	  	}
 	}
 	
 	@Override
 	public void finish(){//If back on phone pressed, store data for next intent
 		Intent i = new Intent();
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
+		bw.pushIntentData(i);
 		setResult(Activity.RESULT_OK, i);
 		super.finish();
 	}

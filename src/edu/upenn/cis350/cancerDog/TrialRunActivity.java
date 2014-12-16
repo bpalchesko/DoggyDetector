@@ -124,15 +124,8 @@ public class TrialRunActivity extends FragmentActivity  implements SaveNotificat
         	 edText.setText(data.getExtras().getString("EditText"));
       	}
         
-        if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
-		      bw = new BloodWheel();
-		      bw.Control=data.getExtras().getInt("Control");
-		      bw.Benign=data.getExtras().getInt("Benign");
-		      bw.Malignant=data.getExtras().getInt("Malignant");
-		} else {
-			Log.e("data", "data not received");
-			bw = new BloodWheel();
-		}
+        bw = new BloodWheel();
+		bw.setWheelData(data);
  
     	SharedPreferences preferences = getSharedPreferences(
     			"edu.upenn.cis350.cancerDog.handlers", Context.MODE_PRIVATE);
@@ -565,32 +558,35 @@ public void postData() {
 	Integer fpb = tc.FPB;
 	Integer fpe = tc.FPE;
 	Integer fn = tc.FN;
-	
-	String data = DOG_NAME + URLEncoder.encode(currentDog) + "&" +
-			SENSITIVITY + URLEncoder.encode(sens.toString()) + "&" +
-			TOTAL_TP + URLEncoder.encode(tp.toString()) + "&" +
-			TOTAL_TNN + URLEncoder.encode(tnn.toString()) + "&" +
-			TOTAL_TNB + URLEncoder.encode(tnb.toString()) + "&" +
-			TOTAL_FPN + URLEncoder.encode(fpn.toString()) + "&" +
-			TOTAL_FPB + URLEncoder.encode(fpb.toString()) + "&" +
-			TOTAL_FPE + URLEncoder.encode(fpe.toString()) + "&" +
-			TOTAL_FPN + URLEncoder.encode(fpn.toString()) + "&" +
-			TOTAL_FPN + URLEncoder.encode(fpn.toString()) + "&" +
-			TOTAL_FN + URLEncoder.encode(fn.toString()) + "&" + 
-			SPEC_NORMAL  + URLEncoder.encode(specNorm.toString()) + "&" +
-			SPEC_BENIGN  + URLEncoder.encode(specBen.toString()) + "&" +
-			SPEC_TOTAL  + URLEncoder.encode(specTot.toString()) + "&" +
-			SUCCESS_RATE + URLEncoder.encode(suc.toString()) + "&" +
-			HANDLER + URLEncoder.encode(currentHandler) + "&" +
-			RECORDER + URLEncoder.encode(currentRecorder) + "&" +
-			TEMPERATURE + URLEncoder.encode(currentTemp) + "&" +
-			HUMIDITY + URLEncoder.encode(currentHumidity) + "&" +
-			TESTER + URLEncoder.encode(currentTester) + trialResults;
+	String data = "";
+	try {
+	data = DOG_NAME + URLEncoder.encode(currentDog, "UTF-8") + "&" +
+			SENSITIVITY + URLEncoder.encode(sens.toString(), "UTF-8") + "&" +
+			TOTAL_TP + URLEncoder.encode(tp.toString(), "UTF-8") + "&" +
+			TOTAL_TNN + URLEncoder.encode(tnn.toString(), "UTF-8") + "&" +
+			TOTAL_TNB + URLEncoder.encode(tnb.toString(), "UTF-8") + "&" +
+			TOTAL_FPN + URLEncoder.encode(fpn.toString(), "UTF-8") + "&" +
+			TOTAL_FPB + URLEncoder.encode(fpb.toString(), "UTF-8") + "&" +
+			TOTAL_FPE + URLEncoder.encode(fpe.toString(), "UTF-8") + "&" +
+			TOTAL_FPN + URLEncoder.encode(fpn.toString(), "UTF-8") + "&" +
+			TOTAL_FPN + URLEncoder.encode(fpn.toString(), "UTF-8") + "&" +
+			TOTAL_FN + URLEncoder.encode(fn.toString(), "UTF-8") + "&" + 
+			SPEC_NORMAL  + URLEncoder.encode(specNorm.toString(), "UTF-8") + "&" +
+			SPEC_BENIGN  + URLEncoder.encode(specBen.toString(), "UTF-8") + "&" +
+			SPEC_TOTAL  + URLEncoder.encode(specTot.toString(), "UTF-8") + "&" +
+			SUCCESS_RATE + URLEncoder.encode(suc.toString(), "UTF-8") + "&" +
+			HANDLER + URLEncoder.encode(currentHandler, "UTF-8") + "&" +
+			RECORDER + URLEncoder.encode(currentRecorder, "UTF-8") + "&" +
+			TEMPERATURE + URLEncoder.encode(currentTemp, "UTF-8") + "&" +
+			HUMIDITY + URLEncoder.encode(currentHumidity, "UTF-8") + "&" +
+			TESTER + URLEncoder.encode(currentTester, "UTF-8") + trialResults;
+	} catch  (Exception e) {
+		e.printStackTrace();
+	}
 	Log.i("DATA", data);
 	String response = mReq.sendPost(FORM_URL, data);
 	results.clear();
 	trialNotes.clear();
-
 } 
 
 	@Override
@@ -635,9 +631,7 @@ public void postData() {
 	@Override
 	public void finish(){
 		Intent i = new Intent();
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant); 
+		bw.pushIntentData(i);
 		i.putExtra("Notes",notes);
 	
 		if (edText.getText().toString()!="")

@@ -45,18 +45,8 @@ public class confirmSettings extends Activity{
 
 		Intent data = (Intent) getIntent();
 		
-		if (data!=null && data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
-		      bw = new BloodWheel();
-		      bw.Control=data.getExtras().getInt("Control");
-		      bw.Benign=data.getExtras().getInt("Benign");
-		      bw.Malignant=data.getExtras().getInt("Malignant");
-		      BenignNum.setText(Integer.valueOf(bw.Benign).toString());
-		      ControlNum.setText(Integer.valueOf(bw.Control).toString());
-		      MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
-		}else{
-			bw = new BloodWheel();
-			Log.e("data", "data not received");
-		}
+		bw = new BloodWheel();
+		bw.setWheelData(data);
 		
     	dogName = (TextView) findViewById(R.id.dogName);
     	temperature = (TextView) findViewById(R.id.tempDeg);
@@ -80,9 +70,7 @@ public class confirmSettings extends Activity{
 	    	Log.e("Loading Activity", "nulls datas...");
 	    }
 	    else if (data.hasExtra("Benign")) {
-	    	bw.Control=data.getExtras().getInt("Control");
-		    bw.Benign=data.getExtras().getInt("Benign");
-		    bw.Malignant=data.getExtras().getInt("Malignant");
+	    	bw.setWheelData(data);
 	    	BenignNum.setText(Integer.valueOf(bw.Benign).toString());
 		    ControlNum.setText(Integer.valueOf(bw.Control).toString());
 		    MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
@@ -119,9 +107,7 @@ public class confirmSettings extends Activity{
 	}
 	
 	private void pushDataOnIntent(Intent i){
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant);
+		bw.pushIntentData(i);
 		
 		if (notes!="")
 			i.putExtra("Notes",notes);
@@ -131,6 +117,10 @@ public class confirmSettings extends Activity{
 	}
 	
 	private void setViews(){
+		BenignNum.setText(Integer.valueOf(bw.Benign).toString());
+	    ControlNum.setText(Integer.valueOf(bw.Control).toString());
+	    MalignantNum.setText(Integer.valueOf(bw.Malignant).toString());
+	    
 		//get dog from settings screen to confirm settings
 		preferences = getSharedPreferences("edu.upenn.cis350.cancerDog.dogs", Context.MODE_PRIVATE);
     	currentDog = preferences.getString("current", "DEFAULT");

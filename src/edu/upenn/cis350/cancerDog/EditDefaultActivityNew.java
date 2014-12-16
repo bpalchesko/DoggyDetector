@@ -75,15 +75,8 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		humidityText = (EditText) findViewById(R.id.humidityText);
 		getSavedSettings();		
 		
-		if (data.hasExtra("Control") && data.hasExtra("Benign") && data.hasExtra("Malignant")) {
-			bw = new BloodWheel();
-			bw.Control = data.getExtras().getInt("Control");
-			bw.Benign = data.getExtras().getInt("Benign");
-			bw.Malignant = data.getExtras().getInt("Malignant");
-		} else {
-			Log.e("Loading Activity", "bw data not passed to activity");
-			bw = new BloodWheel();
-		}
+		bw = new BloodWheel();
+		bw.setWheelData(data);
 		      
 		settingsControlNumberPicker = (NumberPicker) findViewById(R.id.settingsControlNumberPicker);
 		settingsControlNumberPicker.setMinValue(0);
@@ -408,9 +401,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 		bw.Benign=settingsBenignNumberPicker.getValue();
 		bw.Control=settingsControlNumberPicker.getValue();
 		bw.Malignant=settingsMalignantNumberPicker.getValue();
-		i.putExtra("Benign", bw.Benign);
-		i.putExtra("Control", bw.Control);  
-		i.putExtra("Malignant", bw.Malignant);
+		bw.pushIntentData(i);
 		saveCurrentSettings();
 		setResult(Activity.RESULT_OK, i);
 		super.finish();

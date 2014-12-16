@@ -22,7 +22,9 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import android.util.Log;
-
+/**
+ * Adapted from post to android tutorial 
+ **/ 
 public class HttpRequest{
 
     DefaultHttpClient httpClient;
