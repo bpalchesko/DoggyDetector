@@ -170,15 +170,15 @@ public class TrialCalculationTest {
 		
 		trials.add("P9 P5 P1 L P1 S3");
 		session.encodeResult(trials.get(1));
-		assertEquals(1.0, session.getSpecTotal(), 0.01);
+		assertEquals(0.8, session.getSpecTotal(), 0.01);
 		
 		trials.add("P5 P1 L P9 S9");
 		session.encodeResult(trials.get(2));
-		assertEquals(0.857, session.getSpecTotal(), 0.01);
+		assertEquals(0.75, session.getSpecTotal(), 0.01);
 		
 		trials.add("P5 L P5 L P9 S5");
 		session.encodeResult(trials.get(3));
-		assertEquals(0.818, session.getSpecTotal(), 0.01);
+		assertEquals(0.75, session.getSpecTotal(), 0.01);
 	}
 	
 	@Test
@@ -189,7 +189,7 @@ public class TrialCalculationTest {
 		trials.add("P5 P1 L P9 S9");
 		trials.add("P5 L P5 L P9 S5");
 		session = new TrialCalculation(trials, 1, 5, 9);
-		assertEquals(0.818, session.getSpecTotal(), 0.01);
+		assertEquals(0.75, session.getSpecTotal(), 0.01);
 	}
 	
 }

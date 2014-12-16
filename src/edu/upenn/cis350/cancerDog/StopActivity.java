@@ -69,7 +69,6 @@ public class StopActivity extends Activity {
 	protected void proccessReturn(int Stop){
 		Intent i = new Intent(this, TrialRunActivity.class); 
 		i.putExtra("Stop", Stop);
-		//startActivityForResult(i, 1);
 		Log.e("clicked", "" + Stop);
 		setResult(Activity.RESULT_OK, i);
 		finish();
