@@ -1,8 +1,12 @@
 package edu.upenn.cis350.cancerDog;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -12,15 +16,16 @@ public class LauncherActivity extends Activity {
 	public static final int ButtonClickActivity_ID = 1;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_launcher_new);
 		Intent data = (Intent) getIntent();
-		
 
 		bw = new BloodWheel();
 		bw.setWheelData(data);
 	}
+	
+
 	
 	public void onStartTrialClick(View v) {
 		Intent i = new Intent(this, confirmSettings.class);
