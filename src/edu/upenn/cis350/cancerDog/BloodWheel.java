@@ -5,7 +5,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class BloodWheel implements Parcelable {
-	//## This needs to be private with getters and setters
 		protected boolean BloodSet=false;
 		protected int Control=1;
 		protected int Benign=5;

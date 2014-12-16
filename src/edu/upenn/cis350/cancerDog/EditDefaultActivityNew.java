@@ -13,7 +13,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -63,7 +62,6 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	public void onCreate(Bundle savedInstanceState) {	
 	    super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editdefaults_new);
-		//Log.e("Loading Activity", "EditDefaultActivityNew");
 		Intent data = (Intent) getIntent();	
 		dogSettings = getSharedPreferences(DOG_FILE, Context.MODE_PRIVATE);	
 		personnelSettings = getSharedPreferences(PERSONNEL_FILE, Context.MODE_PRIVATE);
@@ -174,7 +172,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 					public void onNothingSelected(AdapterView<?> parentView) {}
 				});
 		
-		this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 		
 	}
 
@@ -308,7 +306,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	 * @param group i.e. dog, handlers
 	 * @return list of options
 	 */
-	public ArrayList<String> getGroup(String group) {
+	protected ArrayList<String> getGroup(String group) {
 		String names = "";
 		if ("dogs".equals(group)) {
 			String defaultDogs = "Tsunami, Ffoster, McBaine, Ohlin";			
@@ -327,7 +325,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	/**
 	 * Sets variables and text fields for spinner options and current selections
 	 */
-	public void getSavedSettings(){
+	protected void getSavedSettings(){
 		dogs = getGroup("dogs");
 		personnel= getGroup("handlers");
 		currentDog = dogSettings.getString("current", "");
@@ -341,7 +339,7 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	/**
 	 * Saves spinner options and current selections to shared preferences
 	 */
-	public void saveCurrentSettings() {
+	protected void saveCurrentSettings() {
 		dogEditor.putString("current", currentDog);
 		dogEditor.putString("dogs", nameStringFromList(dogs));
 		dogEditor.commit();	
@@ -360,13 +358,15 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	 * @param comma-separated string of names
 	 * @return list of names
 	 */
-	public static ArrayList<String> listFromNameString(String names) {
+	protected static ArrayList<String> listFromNameString(String names) {
 		ArrayList<String> temp = new ArrayList<String>();
 		names = names.trim();
 		String[] namesArray = names.split(",");
 		for(String s: namesArray) {
 			s = s.trim();
-			temp.add(s);
+			if(s.length() != 0) {
+				temp.add(s);
+			}
 		}
 		return temp;
 	}
@@ -377,12 +377,14 @@ public class EditDefaultActivityNew extends Activity implements NumberPicker.OnV
 	 * @param list of names
 	 * @return comma-separated string of names
 	 */
-	public static String nameStringFromList(ArrayList<String> names) {
+	protected static String nameStringFromList(ArrayList<String> names) {
 		String temp = "";
 		for(int i = 0; i < names.size() - 1; i++) {
 			temp = temp + names.get(i) + ", ";
 		}
-		temp += names.get(names.size() - 1);
+		if(names.size() > 0) {
+			temp += names.get(names.size() - 1);
+		}
 		return temp;
 	}
 	

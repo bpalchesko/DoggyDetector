@@ -22,9 +22,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import android.util.Log;
-/**
- * Adapted from post to android tutorial 
- **/ 
+
 public class HttpRequest{
 
     DefaultHttpClient httpClient;
@@ -120,9 +118,7 @@ public class HttpRequest{
             response = httpClient.execute(httpGet);  
         } catch (Exception e) {
             Log.e("Your App Name Here", e.getMessage());
-        }
-
-        //int status = response.getStatusLine().getStatusCode();  
+        } 
 
         // we assume that the response body contains the error message  
         try {
